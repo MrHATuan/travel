@@ -9,23 +9,23 @@
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	<link rel="stylesheet" href="{!! asset('assets/css/font-awesome.min.css') !!}" />
-    <link rel="stylesheet" href="{!! asset('assets/css/bootstrap.min.css') !!}" />
-    <link rel="stylesheet" href="{!! asset('assets/css/material-kit.css') !!}" />
-	<link rel="stylesheet" href="{!! asset('assets/css/demo.css') !!}" />
-
-	<!-- Login -->
-	<link rel="stylesheet" href="{!! asset('assets/css/bootstrap.css') !!}" /> 
-	<link rel="stylesheet" href="{!! asset('assets/css/login-register.css') !!}" />
-	<link rel="stylesheet" type="text/css" href="{!! asset('assets/css/font-awesome.css') !!}">
-	{{-- <script type="text/javascript" src="{!! asset('assets/jquery/jquery-1.10.2.js') !!}"></script> --}}
-	<script type="text/javascript" src="{!! asset('assets/js//bootstrap.js') !!}"></script>
+	<link rel="stylesheet" href="{!! asset('assets/css/font-awesome.css') !!}">
+	<link rel="stylesheet" href="{!! asset('assets/css/pe-icon-7-stroke.css') !!}">
+    <link rel="stylesheet" href="{!! asset('assets/css/bootstrap/bootstrap.min.css') !!}" />
+    <link rel="stylesheet" href="{!! asset('assets/css/bootstrap/bootstrap.css') !!}" />
+    <link rel="stylesheet" href="{!! asset('assets/css/mystyle/material-kit.css') !!}" />
+	<link rel="stylesheet" href="{!! asset('assets/css/mystyle/demo.css') !!}" /> 
+	<link rel="stylesheet" href="{!! asset('assets/css/mystyle/login-register.css') !!}" />
+	<link rel="stylesheet" href="{!! asset('assets/css/mystyle/hipster_cards.css') !!}">
+	<script type="text/javascript" src="{!! asset('assets/jquery/jquery-1.10.2.js') !!}"></script>
+	<script type="text/javascript" src="{!! asset('assets/js/bootstrap/bootstrap.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('assets/js/login-register.js') !!}"></script>
 
 
 </head>
 
 
-<body class="index-page">
+<body>
 <!-- Navbar -->
 <nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
 	<div class="container">
@@ -59,12 +59,7 @@
 					<a href="" class="btn">
 						<i class="fa fa-heartbeat" aria-hidden="true"></i> Tin Hot
 					</a>
-				</li>
-				<li>
-					<a href="" class="btn">
-						<i class="fa fa-th-list" aria-hidden="true"></i> Danh Sách
-					</a>
-				</li>  
+				</li> 
 				<li>
 					<a href="javascript:void(0)" class="btn" data-toggle="modal" onclick="openLoginModal();">
 						<i class="fa fa-sign-in" aria-hidden="true"></i> Login/Register
@@ -84,7 +79,6 @@
 		@yield('content')
 
 	
-
     <footer class="footer">
 	    <div class="container">
 	        <nav class="pull-left">
@@ -113,26 +107,35 @@
 	</footer>
 </div>
 </body>
-	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
-	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/js/material.min.js"></script>
-	<script type="text/javascript" src="assets/js/material-kit.js"></script>
+	<script type="text/javascript" src="{!! asset('assets/jquery/jquery.min.js') !!}"></script>
+	<script type="text/javascript" src="{!! asset('assets/js/bootstrap/bootstrap.min.js') !!}"></script>
+	<script type="text/javascript" src="{!! asset('assets/js/bootstrap/bootstrap.js') !!}"></script>
+	<script type="text/javascript" src="{!! asset('assets/js/material.min.js') !!}"></script>
+	<script type="text/javascript" src="{!! asset('assets/js/material-kit.js') !!}"></script>
+	<script type="text/javascript" src="{!! asset('assets/js/hipster-cards.js') !!}"></script>
 
 	<script type="text/javascript">
-
 		$().ready(function(){
-			// the body of this function is in assets/material-kit.js
-		//	materialKit.initSliders();
 			$(window).on('scroll', materialKit.checkScrollForTransparentNavbar);
-
             window_width = $(window).width();
-
             if (window_width >= 768){
                 big_image = $('.wrapper > .header');
-
 				$(window).on('scroll', materialKitDemo.checkScrollForParallax);
 			}
-
 		});
+
+		$().ready(function(){       	
+        	var $container = $('.masonry-container');
+            doc_width = $(document).width();            
+            if (doc_width >= 768){
+                $container.masonry({
+                    itemSelector        : '.card-box',
+                    columnWidth         : '.card-box',
+                    transitionDuration  : 0
+                });   
+            } else {
+                $('.mas-container').removeClass('mas-container').addClass('row');
+            }            
+    	});
 	</script>
 </html>

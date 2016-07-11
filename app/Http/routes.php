@@ -15,6 +15,18 @@ Route::get('/',['as' => 'getHome', function () {
     return view('home');
 }]);
 
-Route::get('login', function() {
-	return view('login');
+Route::get('profile', function() {
+	return view('profile');
+});
+
+Route::get('test', function() {
+	return view('tutorial');
+});
+
+Route::get('com', function() {
+	return view('com');
+});
+
+Route::get('table', function() {
+	return view('table');
 });

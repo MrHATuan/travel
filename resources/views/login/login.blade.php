@@ -24,6 +24,7 @@
                           <form method="post" action="/login" accept-charset="UTF-8">
                           <input id="email" class="form-control" type="email" placeholder="Email" name="email">
                           <input id="password" class="form-control" type="password" placeholder="Mật Khẩu" name="password">
+                          <br>
                           <input class="btn btn-default btn-login" type="button" value="Đăng Nhập" >
                           </form>
                       </div>
@@ -37,6 +38,7 @@
                       <input id="fullname" type="text" class="form-control" placeholder="Họ Tên" name="fullname">
                       <input id="password" class="form-control" type="password" placeholder="Mật Khẩu" name="password">
                       <input id="password_confirmation" class="form-control" type="password" placeholder="Mật Khẩu Xác Nhận" name="password_confirmation">
+                      <br>
                       <input class="btn btn-default btn-register" type="submit" value="Đăng Ký" name="commit">
                       </form>
                       </div>
