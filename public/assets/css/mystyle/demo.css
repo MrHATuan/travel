@@ -374,3 +374,26 @@
     color: #FFFFFF;
 }
 
+.error_msg {
+    text-align: left;
+    color: red;
+    font-weight: bold;
+    padding: 20px 5px 20px 60px;
+    border: 1px dotted #ccc;
+    background: #f7f7f7 url("../../img/warning.png") no-repeat 15px center;
+    /** Thêm CSS 3.0 **/
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+.error_msg li {
+    list-style: none;
+}
+.result_msg {
+    text-align: left;
+    font-style: italic;
+    color: black;
+    padding: 20px 5px 20px 60px;
+    border: 1px solid green;
+    background: #C1FFE0 url("../../img/valid.png") no-repeat 15px center;
+}

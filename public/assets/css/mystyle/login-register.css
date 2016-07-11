@@ -128,28 +128,6 @@
     margin: 0 17px;
     padding: 15px;
 }
-.login .social .circle .fa{
-    font-size: 16px;
-}
-.login .social .facebook{
-    background-color: #455CA8;
-    color: #FFFFFF;
-}
-.login .social .google{
-    background-color: #F74933;
-}
-.login .social .github{
-    background-color: #403A3A;
-}
-.login .facebook:hover{
-    background-color: #6E83CD;
-}
-.login .google:hover{
-    background-color: #FF7566;
-}
-.login .github:hover{
-    background-color: #4D4D4d;;
-}
 .login .forgot {
     color: #797979;
     margin-left: 0;
@@ -161,7 +139,7 @@
     background-color: #00BBFF;
     border-color: #00BBFF;
     border-width: 0;
-    color: #FFFFFF;
+    /*color: #FFFFFF;*/
     display: block;
     margin: 0 auto;
     padding: 15px 50px;
@@ -170,13 +148,12 @@
 }
 .login .btn-login:hover, .registerBox .btn-register:hover{
     background-color: #00A4E4;
-    /*color: #FFFFFF;*/
 }
 .login .form-control{
     border-radius: 3px;
     background-color: rgba(0, 0, 0, 0.09);
     box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.09) inset;
-    color: #FFFFFF;
+    color: #000000;
 }
 .login .form-control:hover{
     background-color: rgba(0,0,0,.16);
@@ -184,7 +161,7 @@
 .login .form-control:focus{
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.04) inset;
     background-color: rgba(0,0,0,0.23);
-    color: #FFFFFF;
+    color: #000000;
 }
 .login .box .form input[type="text"], .login .box .form input[type="password"], input[type="email"]{
     border-radius: 3px;
@@ -203,29 +180,6 @@
         width: 100%;
     }
 }
-
-.big-login, .big-register{
-    background-color: #00bbff;
-    color: #FFFFFF;
-    border-radius: 7px;
-    border-width: 2px;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 200;
-    padding: 16px 60px;
-    text-transform: uppercase;
-    transition: all 0.3s ease 0s;
-}
-.big-login:hover{
-    background-color: #00A4E4;
-    color: #FFFFFF;
-}
-.big-register{
-    background-color: rgba(0,0,0,.0);
-    color: #00bbff;
-    border-color: #00bbff;
-}
-.big-register:hover{
-    border-color: #00A4E4;
-    color:  #00A4E4;
+.form .error {
+    color: #c0392b;
 }

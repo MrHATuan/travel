@@ -44,7 +44,7 @@ function openRegisterModal(){
     
 }
 
-/*
+
 function loginAjax(){
 //        Remove this comments when moving to server
 //     $.post( "/login", function( data ) {
@@ -68,4 +68,4 @@ function shakeModal(){
     }, 1000 ); 
 }
 
-*/   
+   

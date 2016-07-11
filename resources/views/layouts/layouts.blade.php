@@ -20,7 +20,7 @@
 	<script type="text/javascript" src="{!! asset('assets/jquery/jquery-1.10.2.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('assets/js/bootstrap/bootstrap.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('assets/js/login-register.js') !!}"></script>
-
+	
 
 </head>
 
@@ -51,20 +51,39 @@
 	    <div class="collapse navbar-collapse" id="navigation-index">
 	    	<ul class="nav navbar-nav navbar-right">
 				<li>
-					<a href="" class="btn">
+					<a href="#" class="btn">
 						<i class="fa fa-windows" aria-hidden="true"></i> Tin Mới
 					</a>
 				</li>
 				<li>
-					<a href="" class="btn">
+					<a href="#" class="btn">
 						<i class="fa fa-heartbeat" aria-hidden="true"></i> Tin Hot
 					</a>
 				</li> 
+				@if (!Auth::check())
 				<li>
 					<a href="javascript:void(0)" class="btn" data-toggle="modal" onclick="openLoginModal();">
 						<i class="fa fa-sign-in" aria-hidden="true"></i> Login/Register
 					</a>
 				</li>
+				@endif
+				@if (Auth::check())
+					<li>
+						<a href="#" class="btn">
+							<i class="fa fa-user" aria-hidden="true"></i> Trang Cá Nhân
+						</a>
+					</li>
+					<li>
+						<a href="#" class="btn btn-simple dropdown-toggle" data-toggle="dropdown">
+    						<i class="fa fa-github-alt" aria-hidden="true"></i> {!! Auth::user()->name !!}
+    						<b class="caret"></b>
+    					</a>
+    					<ul class="dropdown-menu">
+							<li><a href="{!! url('logout') !!}">Đăng Xuất</a></li>
+							<li class="divider"></li>
+						</ul>
+					</li>
+				@endif
 	    	</ul>
 	    </div>
 	</div>
@@ -74,7 +93,6 @@
 
 <div class="wrapper">
 	
-
 		@include('login.login')
 		@yield('content')
 
@@ -113,6 +131,8 @@
 	<script type="text/javascript" src="{!! asset('assets/js/material.min.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('assets/js/material-kit.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('assets/js/hipster-cards.js') !!}"></script>
+	<script src="{!! asset('assets/js/myscript.js') !!}"></script>
+
 
 	<script type="text/javascript">
 		$().ready(function(){

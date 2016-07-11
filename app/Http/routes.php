@@ -19,9 +19,9 @@ Route::get('profile', function() {
 	return view('profile');
 });
 
-Route::get('test', function() {
+Route::get('test',['as' => 'abc', function() {
 	return view('tutorial');
-});
+}]);
 
 Route::get('com', function() {
 	return view('com');
@@ -30,3 +30,8 @@ Route::get('com', function() {
 Route::get('table', function() {
 	return view('table');
 });
+
+// Route::get('login', ['as' => 'getLogin', 'uses' => 'LoginController@getLogin']);
+Route::post('login', ['as' => 'postLogin', 'uses' => 'LoginController@postLogin']);
+Route::post('register',['as' => 'postRegister', 'uses' => 'LoginController@postRegister']);
+Route::get('logout', ['as' => 'getLogout', 'uses' => 'LoginController@getLogout']);
