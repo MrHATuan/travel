@@ -15,23 +15,25 @@ Route::get('/',['as' => 'getHome', function () {
     return view('home');
 }]);
 
-Route::get('profile', function() {
-	return view('profile');
-});
 
-Route::get('test',['as' => 'abc', function() {
-	return view('tutorial');
-}]);
-
-Route::get('com', function() {
-	return view('com');
-});
-
-Route::get('table', function() {
-	return view('table');
-});
-
-// Route::get('login', ['as' => 'getLogin', 'uses' => 'LoginController@getLogin']);
+// Route::get('/',['as' => 'getLogin', 'uses' => 'LoginController@getLogin']);
 Route::post('login', ['as' => 'postLogin', 'uses' => 'LoginController@postLogin']);
 Route::post('register',['as' => 'postRegister', 'uses' => 'LoginController@postRegister']);
 Route::get('logout', ['as' => 'getLogout', 'uses' => 'LoginController@getLogout']);
+
+
+Route::group(['middleware' => 'auth'], function() {
+	Route::group(['prefix' => 'user', 'namespace' => 'User'], function() {
+		Route::get('/{name}',['as' => 'getProfile', function() {
+			return view('mypage');
+		}]);
+		Route::get('/{name}/edit-profile', ['as' => 'getEditProfile', 'uses' => 'UserController@getEditProfile']);
+		Route::post('/{name}/edit-profile', ['as' => 'postEditProfile', 'uses' => 'UserController@postEditProfile']);
+
+		Route::post('/newplan', ['as' => 'postNewPlan', 'uses' => 'PlanController@postNewPlan']);
+
+
+		Route::get('/{id}/plan', ['as' => 'getPlan', 'uses' => 'PlanController@getPlan']);
+	});
+});
+

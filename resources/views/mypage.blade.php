@@ -1,11 +1,13 @@
 @extends('layouts.layouts')
-@section('title', 'Du Lịch Bụi')
+<?php
+$name= Auth::user()->name;
+?>
+@section('title', $name)
 @section('content')
 
-<div class="index-page">
 
 
-    <div class="header header-filter" style="background-image: url('assets/img/bg2.jpeg');">
+	<div class="header header-filter" style="background-image: url('{{ asset('uploads/covers/' . Auth::user()->cover) }}');">
         <div class="section" id="carousel">
             <div class="container">
                 <div class="row">
@@ -15,56 +17,20 @@
                             <h3>Thỏa Lòng Đam Mê Tuổi Trẻ</h3>
                             <br>
                         </div>
-                        <!-- Carousel Card -->
-                        <div class="card-raised card-carousel">
-                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                                <div class="carousel slide" data-ride="carousel">
-                                    <!-- Indicators -->
-                                    <ol class="carousel-indicators">
-                                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                                        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-                                    </ol>
-                                    <!-- Wrapper for slides -->
-                                    <div class="carousel-inner">
-                                        <div class="item">
-                                            <img src="{!! asset('assets/img/bg2.jpeg') !!}" alt="Awesome Image">
-                                        </div>
-                                        <div class="item active">
-                                            <img src="{!! asset('assets/img/bg3.jpeg') !!}" alt="Awesome Image">
-                                        </div>
-                                        <div class="item">
-                                            <img src="{!! asset('assets/img/bg4.jpeg') !!}" alt="Awesome Image">
-                                        </div>
-                                        <div class="item">
-                                            <img src="{!! asset('assets/img/bg1.jpeg') !!}" alt="Awesome Image">
-                                        </div>
-                                    </div>
-                                    <!-- Controls -->
-                                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                                    </a>
-                                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Carousel Card -->
-                        <br><br>                      
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
     <div class="main main-raised">
     <br><br>
 
-        <div class="section section-basic" id="section1">
+        <div class="section section-basic">
             <div class="container">
                 <div class="title">
-                    <h2>Kế Hoạch Mới</h2>
+                    <h2>Kế Hoạch Của Tôi</h2>
                 </div>    
                 
                 <div class="masonry-container">
@@ -74,51 +40,6 @@
                             <div class="header">
                                     <img src="{!! asset('assets/img/lifestyle-8.jpg')  !!}"/>
                                     <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <p class="description">Tham gia: 5/6<br>
-                                Theo dõi: 12
-                                </p>
-                            </div>                                           
-                        </div>
-                    </div>
-
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <p class="description">Tham gia: 5/6<br>
-                                Theo dõi: 12
-                                </p>
-                            </div>                                           
-                        </div>
-                    </div>
-
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <p class="description">Tham gia: 5/6<br>
-                                Theo dõi: 12
-                                </p>
-                            </div>                                           
-                        </div>
-                    </div>
-
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
                             </div>                           
                             <div class="content">
                                 <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
@@ -248,21 +169,21 @@
                 </ul>
             </div>
 
-        </div>         
+        </div>  
 
-        <div class="section section-basic" id="section2">
+		<div class="section section-basic">
             <div class="container">
                 <div class="title">
-                    <h2>Kế Hoạch Hót</h2>
-                </div>
-
+                    <h2>Kế Hoạch Tham Gia</h2>
+                </div>    
+                
                 <div class="masonry-container">
 
                     <div class="card-box col-md-4 col-sm-6">
                         <div class="card">                            
                             <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
+                                    <img src="{!! asset('assets/img/lifestyle-8.jpg')  !!}"/>
+                                    <div class="filter"></div>
                             </div>                           
                             <div class="content">
                                 <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
@@ -302,42 +223,93 @@
                             </div>                                           
                         </div>
                     </div>
-
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <p class="description">Tham gia: 5/6<br>
-                                Theo dõi: 12
-                                </p>
-                            </div>                                           
-                        </div>
-                    </div>
-
                 </div>
-
             </div>
             <br>
             <div align="center">     
                 <ul class="pagination ct-blue">
                     <li><a href="#">&laquo;</a></li>
-                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">1</a></li>
                     <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
+                    <li class="active"><a href="#">3</a></li>
                     <li><a href="#">4</a></li>
                     <li><a href="#">5</a></li>
                     <li><a href="#">&raquo;</a></li>
                 </ul>
             </div>
 
-        </div>
-            
-    </div>
+        </div>  
 
-</div>
+        <div class="section section-basic">
+            <div class="container">
+                <div class="title">
+                    <h2>Kế Hoạch Đang Theo Dõi</h2>
+                </div>    
+                
+                <div class="masonry-container">
+
+                    <div class="card-box col-md-4 col-sm-6">
+                        <div class="card">                            
+                            <div class="header">
+                                    <img src="{!! asset('assets/img/lifestyle-8.jpg')  !!}"/>
+                                    <div class="filter"></div>
+                            </div>                           
+                            <div class="content">
+                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
+                                <p class="description">Tham gia: 5/6<br>
+                                Theo dõi: 12
+                                </p>
+                            </div>                                           
+                        </div>
+                    </div>
+
+                    <div class="card-box col-md-4 col-sm-6">
+                        <div class="card">                            
+                            <div class="header">
+                                <img src="assets/img/lifestyle-8.jpg"/>
+                                <div class="filter"></div>
+                            </div>                           
+                            <div class="content">
+                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
+                                <p class="description">Tham gia: 5/6<br>
+                                Theo dõi: 12
+                                </p>
+                            </div>                                           
+                        </div>
+                    </div>
+
+                    <div class="card-box col-md-4 col-sm-6">
+                        <div class="card">                            
+                            <div class="header">
+                                <img src="assets/img/lifestyle-8.jpg"/>
+                                <div class="filter"></div>
+                            </div>                           
+                            <div class="content">
+                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
+                                <p class="description">Tham gia: 5/6<br>
+                                Theo dõi: 12
+                                </p>
+                            </div>                                           
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <br>
+            <div align="center">     
+                <ul class="pagination ct-blue">
+                    <li><a href="#">&laquo;</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li class="active"><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">&raquo;</a></li>
+                </ul>
+            </div>
+
+        </div>          
+
+   	</div>
 
 @endsection

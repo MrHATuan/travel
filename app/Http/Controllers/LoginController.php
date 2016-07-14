@@ -12,6 +12,12 @@ use DateTime;
 
 class LoginController extends Controller
 {
+    // public function getLogin() {
+    //     if (!Auth::check()) {
+    //        return view('home');
+    //     } else {
+    //         return redirect('user');
+    // }
 
     public function postLogin(LoginRequest $request) {
     	$login = [

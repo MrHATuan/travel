@@ -39,7 +39,7 @@
 	    	<a href="{!! route('getHome')  !!}">
 	        	<div class="logo-container">
 	                <div class="logo">
-	                    <img src="assets/img/logo.jpg"  data-placement="bottom" data-html="true">
+	                    <img src="{!! asset('assets/img/logo.jpg') !!}"  data-placement="bottom" data-html="true">
 	                </div>
 	                <div class="brand">
 	                    Du Lịch Bụi
@@ -49,38 +49,47 @@
 	    </div>
 
 	    <div class="collapse navbar-collapse" id="navigation-index">
-	    	<ul class="nav navbar-nav navbar-right">
+	    	<ul class="nav navbar-nav navbar-left">
 				<li>
-					<a href="#" class="btn">
+					<a href="#section1" class="btn">
 						<i class="fa fa-windows" aria-hidden="true"></i> Tin Mới
 					</a>
 				</li>
 				<li>
-					<a href="#" class="btn">
+					<a href="#section2" class="btn">
 						<i class="fa fa-heartbeat" aria-hidden="true"></i> Tin Hot
 					</a>
-				</li> 
-				@if (!Auth::check())
-				<li>
-					<a href="javascript:void(0)" class="btn" data-toggle="modal" onclick="openLoginModal();">
-						<i class="fa fa-sign-in" aria-hidden="true"></i> Login/Register
-					</a>
 				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				@if (!Auth::check())
+					<li>
+						<a href="javascript:void(0)" class="btn" data-toggle="modal" onclick="openLoginModal();">
+							<i class="fa fa-sign-in" aria-hidden="true"></i> Login/Register
+						</a>
+					</li>
 				@endif
 				@if (Auth::check())
 					<li>
-						<a href="#" class="btn">
-							<i class="fa fa-user" aria-hidden="true"></i> Trang Cá Nhân
+						<a href="javascript:void(0)" class="btn" data-toggle="modal" onclick="openNewPlan();">
+							<i class="fa fa-paper-plane" aria-hidden="true"></i> Tạo Kế Hoạch
+						</a>
+					</li>
+					<li>
+						<a href="{!! route('getProfile', Auth::user()->name) !!}" class="btn">
+							<img src="{{ asset('uploads/avatars/' . Auth::user()->avatar ) }}" style="width: 25px; height: 25px; border-radius: 50%;">
+    						{!! Auth::user()->name !!}
 						</a>
 					</li>
 					<li>
 						<a href="#" class="btn btn-simple dropdown-toggle" data-toggle="dropdown">
-    						<i class="fa fa-github-alt" aria-hidden="true"></i> {!! Auth::user()->name !!}
+							<i class="fa fa-cog" aria-hidden="true"></i>
     						<b class="caret"></b>
     					</a>
     					<ul class="dropdown-menu">
-							<li><a href="{!! url('logout') !!}">Đăng Xuất</a></li>
-							<li class="divider"></li>
+    						<li><a href="{!! route('getEditProfile', Auth::user()->name) !!}" class="fa fa-user"> Thông Tin Cá Nhân</a></li>
+    						<li class="divider"></li>
+							<li><a href="{{ url('logout') }}" class="fa fa-sign-out"> Đăng Xuất</a></li>
 						</ul>
 					</li>
 				@endif
@@ -94,6 +103,7 @@
 <div class="wrapper">
 	
 		@include('login.login')
+		@include('plan.newplan')
 		@yield('content')
 
 	
@@ -133,7 +143,6 @@
 	<script type="text/javascript" src="{!! asset('assets/js/hipster-cards.js') !!}"></script>
 	<script src="{!! asset('assets/js/myscript.js') !!}"></script>
 
-
 	<script type="text/javascript">
 		$().ready(function(){
 			$(window).on('scroll', materialKit.checkScrollForTransparentNavbar);
@@ -157,5 +166,16 @@
                 $('.mas-container').removeClass('mas-container').addClass('row');
             }            
     	});
+
+    	function showNewPlan(){
+	        $('.planBox').fadeIn('fast');    
+	    }
+
+	    function openNewPlan(){
+	        showNewPlan();
+	        setTimeout(function(){
+	            $('#newPlan').modal('show');    
+	        }, 230);	        
+	    }	
 	</script>
 </html>

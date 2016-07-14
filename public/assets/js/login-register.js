@@ -67,5 +67,4 @@ function shakeModal(){
                 $('#loginModal .modal-dialog').removeClass('shake'); 
     }, 1000 ); 
 }
-
    

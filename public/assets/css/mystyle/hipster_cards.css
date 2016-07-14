@@ -38,7 +38,6 @@
   font-family: "Raleway","Helvetica","Arial", sans-serif;
 }
 .card .category,
-.card .label,
 .card .title-modern,
 .card .btn-modern,
 .card .price h4 {
@@ -459,7 +458,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 
 /*           Labels & Progress-bar              */
-.label {
+/*.label {
   padding: 10px 13px;
   border-radius: 2px;
   font-weight: 500;
@@ -486,7 +485,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 
 .label-danger {
   background-color: #FF3B30;
-}
+}*/
 
 /*.section {
   padding: 30px 0;
@@ -998,21 +997,17 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
   opacity: 1;
   filter: alpha(opacity=100);
 }
-.card .category,
-.card .label {
+.card .category {
   font-size: 14px;
   margin-bottom: 0px;
 }
-.card .category i,
-.card .label i {
+.card .category i {
   font-size: 16px;
 }
 .card .category {
   color: #9A9A9A;
 }
-.card .label {
-  text-shadow: none;
-}
+ text-shadow: none;
 .card .title {
   color: #333333;
 }

@@ -1,0 +1,99 @@
+
+@charset "UTF-8";
+
+.animated {
+  -webkit-animation-duration: 1s;
+     -moz-animation-duration: 1s;
+       -o-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+     -moz-animation-fill-mode: both;
+       -o-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.animated.hinges {
+  -webkit-animation-duration: 2s;
+     -moz-animation-duration: 2s;
+       -o-animation-duration: 2s;
+          animation-duration: 2s;
+}
+
+.animated.slow {
+  -webkit-animation-duration: 3s;
+     -moz-animation-duration: 3s;
+       -o-animation-duration: 3s;
+          animation-duration: 3s;
+}
+
+.animated.snail {
+  -webkit-animation-duration: 4s;
+     -moz-animation-duration: 4s;
+       -o-animation-duration: 4s;
+          animation-duration: 4s;
+}
+
+.newplan .modal-dialog{
+    width: 1000px;
+}
+
+.newplan .modal-header {
+    border: 0 none;
+    padding: 15px 15px 5px;
+    font-size: 20px;
+}
+.newplan .division {
+    float: none;
+    margin: 0 auto 18px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+.newplan .division .line {
+    border-top: 1px solid #DFDFDF;
+    position: absolute;
+    top: 5px;
+    width: 34%;
+}
+.newplan .division .line.l {
+    left: 0;
+}
+.newplan .division .line.r {
+    right: 0;
+}
+.newplan .division span {
+    color: #424242;
+    font-size: 17px;
+}
+
+
+
+.btn-file>input{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    transform: translate(-300px, 0) scale(4);
+    font-size: 23px;
+    direction: ltr;
+    cursor: pointer;
+}
+
+input[type="file"] {
+    display: block;
+}
+
+@media (max-width:1050px){
+    .newplan .modal-dialog{
+        width: 100%;
+    }
+}
+
+.planBox .error {
+    color: #c0392b;
+}
+
+
