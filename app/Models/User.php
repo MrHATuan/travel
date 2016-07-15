@@ -17,7 +17,21 @@ class User extends Authenticatable
     ];
 
 
+    public function userplan() {
+        return $this->hasMany('App\Models\Plan');
+    }
+
+    public function userjoin() {
+        return $this->hasMany('App\Models\Join');
+    }
+
+    public function userfollow() {
+        return $this->hasMany('App\Models\Follow');
+    }
    
+   public function usercomment() {
+        return $this->hasMany('App\Models\Comment');
+    }
 
 
     /**

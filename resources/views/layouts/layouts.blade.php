@@ -112,17 +112,17 @@
 	        <nav class="pull-left">
 	            <ul>
 					<li>
-						<a href="">
+						<a href="#">
 							Mr.HATuan
 						</a>
 					</li>
 					<li>
-						<a href="">
+						<a href="#">
 						   About Us
 						</a>
 					</li>
 					<li>
-						<a href="">
+						<a href="#">
 						   Blog
 						</a>
 					</li>

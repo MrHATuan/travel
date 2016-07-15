@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/',['as' => 'getHome', function () {
-    return view('home');
-}]);
+Route::get('/',['as' => 'getHome', 'uses' => 'User\PlanController@getHome']);
 
 Route::get('ggmap', function() {
 	return view('ggmaps');
@@ -28,9 +26,7 @@ Route::get('logout', ['as' => 'getLogout', 'uses' => 'LoginController@getLogout'
 
 Route::group(['middleware' => 'auth'], function() {
 	Route::group(['prefix' => 'user', 'namespace' => 'User'], function() {
-		Route::get('/{name}',['as' => 'getProfile', function() {
-			return view('mypage');
-		}]);
+		Route::get('/{name}',['as' => 'getProfile', 'uses' => 'PlanController@getProfile']);
 		Route::get('/{name}/edit-profile', ['as' => 'getEditProfile', 'uses' => 'UserController@getEditProfile']);
 		Route::post('/{name}/edit-profile', ['as' => 'postEditProfile', 'uses' => 'UserController@postEditProfile']);
 

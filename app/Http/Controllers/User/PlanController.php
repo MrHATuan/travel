@@ -9,6 +9,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Plan;
 use App\Models\Route;
+use App\Models\Join;
+use App\Models\Follow;
+use App\Models\Comment;
 use Auth;
 use Image;
 use DateTime;
@@ -16,9 +19,14 @@ use DateTime;
 
 class PlanController extends Controller
 {
-    // public function getNewPlan($name) {
-    // 	return view('newplan');
-    // }
+    public function getHome() {
+        $newplan = Plan::select('id', 'name_plan', 'cover_plan', 'max_user', 'date_start', 'created_at')->orderBy('created_at', 'desc')->get()->toArray();
+    	return view('home', compact('newplan'));
+    }
+
+    public function getProfile($name) {
+        return view('mypage');
+    }
 
     public function postNewPlan(NewPlanRequest $request) {
     	// dd($request);
@@ -62,6 +70,7 @@ class PlanController extends Controller
     }
 
     public function getPlan($id) {
-    	return view('plan');
+        $plan = Plan::find($id);
+    	return view('plan.plan');
     }
 }

@@ -68,171 +68,22 @@
                 </div>    
                 
                 <div class="masonry-container">
-
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                    <img src="{!! asset('assets/img/lifestyle-8.jpg')  !!}"/>
-                                    <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <p class="description">Tham gia: 5/6<br>
-                                Theo dõi: 12
-                                </p>
-                            </div>                                           
+                    @foreach($newplan as $item)
+                        <div class="card-box col-md-4 col-sm-6">
+                            <div class="card">                            
+                                <div class="header">
+                                        <img src="{!! asset('uploads/plans/' .$item["cover_plan"])  !!}"/>
+                                        <div class="filter"></div>
+                                </div>                           
+                                <div class="content">
+                                    <h4 class="title"><a href="{{ route('getPlan', $item["id"]) }}">{{ $item["name_plan"] }}</a></h4>
+                                    <h6 class="category">Ngày bắt đầu: {{ date("d-m-Y", strtotime($item["date_start"])) }}</h6>
+                                    <p class="description">Đã đăng {{ \Carbon\Carbon::createFromTimeStamp(strtotime($item["created_at"]))->diffForHumans() }}</p>
+                                </div>                                           
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <p class="description">Tham gia: 5/6<br>
-                                Theo dõi: 12
-                                </p>
-                            </div>                                           
-                        </div>
-                    </div>
-
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <p class="description">Tham gia: 5/6<br>
-                                Theo dõi: 12
-                                </p>
-                            </div>                                           
-                        </div>
-                    </div>
-
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <p class="description">Tham gia: 5/6<br>
-                                Theo dõi: 12
-                                </p>
-                            </div>                                           
-                        </div>
-                    </div>
-
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <p class="description">Tham gia: 5/6<br>
-                                Theo dõi: 12
-                                </p>
-                            </div>                                           
-                        </div>
-                    </div>
-
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <p class="description">Tham gia: 5/6<br>
-                                Theo dõi: 12
-                                </p>
-                            </div>                                           
-                        </div>
-                    </div>
-
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <p class="description">Tham gia: 5/6<br>
-                                Theo dõi: 12
-                                </p>
-                            </div>                                           
-                        </div>
-                    </div>
-
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <p class="description">Tham gia: 5/6<br>
-                                Theo dõi: 12
-                                </p>
-                            </div>                                           
-                        </div>
-                    </div>
-
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <p class="description">Tham gia: 5/6<br>
-                                Theo dõi: 12
-                                </p>
-                            </div>                                           
-                        </div>
-                    </div>
-
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <p class="description">Tham gia: 5/6<br>
-                                Theo dõi: 12
-                                </p>
-                            </div>                                           
-                        </div>
-                    </div>
-
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <p class="description">Tham gia: 5/6<br>
-                                Theo dõi: 12
-                                </p>
-                            </div>                                           
-                        </div>
-                    </div>
+                    @endforeach
+                    
                 </div>
             </div>
             <br>
@@ -266,9 +117,8 @@
                             </div>                           
                             <div class="content">
                                 <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <p class="description">Tham gia: 5/6<br>
-                                Theo dõi: 12
-                                </p>
+                                <h6 class="category">Ngày bắt đầu: 11/11/2011</h6>
+                                <p class="description">Đã đăng 2 ngày trước</p>
                             </div>                                           
                         </div>
                     </div>
@@ -281,9 +131,22 @@
                             </div>                           
                             <div class="content">
                                 <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <p class="description">Tham gia: 5/6<br>
-                                Theo dõi: 12
-                                </p>
+                                <h6 class="category">Ngày bắt đầu: 11/11/2011</h6>
+                                <p class="description">Đã đăng 2 ngày trước</p>
+                            </div>                                           
+                        </div>
+                    </div>
+                    
+                    <div class="card-box col-md-4 col-sm-6">
+                        <div class="card">                            
+                            <div class="header">
+                                <img src="assets/img/lifestyle-8.jpg"/>
+                                <div class="filter"></div>
+                            </div>                           
+                            <div class="content">
+                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
+                                <h6 class="category">Ngày bắt đầu: 11/11/2011</h6>
+                                <p class="description">Đã đăng 2 ngày trước</p>
                             </div>                                           
                         </div>
                     </div>
@@ -296,28 +159,13 @@
                             </div>                           
                             <div class="content">
                                 <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <p class="description">Tham gia: 5/6<br>
-                                Theo dõi: 12
-                                </p>
+                                <h6 class="category">Ngày bắt đầu: 11/11/2011</h6>
+                                <p class="description">Đã đăng 2 ngày trước</p>
                             </div>                                           
                         </div>
                     </div>
 
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <p class="description">Tham gia: 5/6<br>
-                                Theo dõi: 12
-                                </p>
-                            </div>                                           
-                        </div>
-                    </div>
-
+                    
                 </div>
 
             </div>
