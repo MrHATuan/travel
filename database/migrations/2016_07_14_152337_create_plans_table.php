@@ -19,8 +19,9 @@ class CreatePlansTable extends Migration
             $table->string('name_plan');
             $table->date('date_start');
             $table->integer('max_user');
-            $table->string('cover_plan')->default('default.jpg');
+            $table->string('cover_plan');
             $table->integer('status');
+            $table->string('ggmap');
             $table->timestamps();
         });
     }

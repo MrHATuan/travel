@@ -39,7 +39,7 @@
                         <input id="password" class="form-control" type="password" placeholder="Mật Khẩu" name="password">
                         <input id="password_confirmation" class="form-control" type="password" placeholder="Mật Khẩu Xác Nhận" name="password_confirmation">
                         <br>
-                        <input class="btn btn-default btn-register" type="submit" value="Đăng Ký" name="commit">
+                        <input class="btn btn-default btn-register" type="submit" value="Đăng Ký">
                       </form>
                     </div>
                   </div>

@@ -15,6 +15,10 @@ Route::get('/',['as' => 'getHome', function () {
     return view('home');
 }]);
 
+Route::get('ggmap', function() {
+	return view('ggmaps');
+});
+
 
 // Route::get('/',['as' => 'getLogin', 'uses' => 'LoginController@getLogin']);
 Route::post('login', ['as' => 'postLogin', 'uses' => 'LoginController@postLogin']);

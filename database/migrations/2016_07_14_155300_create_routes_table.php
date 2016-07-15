@@ -23,7 +23,6 @@ class CreateRoutesTable extends Migration
             $table->text('activity');
             $table->string('vehicle');
             $table->string('travel_time');
-            $table->string('ggmap');
             $table->timestamps();
         });
     }

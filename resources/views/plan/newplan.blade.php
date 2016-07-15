@@ -19,7 +19,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="planBox">
-                		<form action="{{ action('User\PlanController@postNewPlan') }}" method="post" accept-charset="utf-8" id="form-newplan">
+                		<form action="{{ action('User\PlanController@postNewPlan') }}" method="post" enctype="multipart/form-data" id="form-newplan">
                 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
                 			<div class="row">
                 				<div class="col-md-4 col-md-offset-4">
@@ -27,7 +27,7 @@
                     					<div class="title text-center">
                     						<h3>Tên Kế Hoạch</h3> 
                     					</div>
-                    					<input type="text" name="name_plan" id="name_plan" class="form-control" style="font-size: 20px;">
+                    					<input type="text" name="nameplan" id="nameplan" class="form-control" style="font-size: 20px;">
                     					<br><br>
                 					</div>
                 				</div>
@@ -38,9 +38,9 @@
                 					<div class="row">
                                         <span class="btn btn-file">
                                             <button type="button" class="fileupload-new btn btn-info btn-simple btn-upload">Ảnh Bìa Kế Hoạch</button>
-                                            <input type="file" name="coverphoto" id="coverphoto" onchange="readURL(this);">
+                                            <input type="file" name="coverphoto" id="coverphoto" value="" onchange="readURL2(this);">
                                             <script type="text/javascript">
-                                                function readURL(input) {
+                                                function readURL2(input) {
                                                     if (input.files && input.files[0]) {
                                                         var reader = new FileReader();
                                                         reader.onload = function (e) {
@@ -56,7 +56,7 @@
                 				<div class="col-md-4 col-md-offset-4">
                 					<div class="form-group label-floating">
                     					<label class="control-label">Ngày bắt đầu</label>
-                    					<input class="form-control" id="datestart" name="datestart" type="text" />
+                    					<input class="form-control" id="datestart" name="datestart" type="date" />
                 					</div>
                 					
                 					<div class="form-group label-floating">
@@ -65,11 +65,10 @@
                     				</div>
                 					<br><br>
                 				</div>
-                                <div id="route">
+                                <div class="col-md-8 col-md-offset-2" id="route">
                                                                         
                                 </div>
                                 <div class="col-md-4 col-md-offset-4">
-                                    {{-- <button id="btn1">Append text</button> --}}
                                     <a href="#" class="btn" id="addScnt">
                                         <i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i> Thêm Địa Điểm
                                     </a>                               
@@ -93,7 +92,7 @@
 <script type="text/javascript">
     $("#form-newplan").validate({
         rules:{
-            name_plan:{
+            nameplan:{
                 required:true,
             },
             datestart:{
@@ -104,7 +103,7 @@
             }
         },
         messages:{
-            name_plan:{
+            nameplan:{
                 required:"Chưa Nhập Tên Kế Hoạch",
             },
             datestart:{
@@ -119,20 +118,14 @@
     $(function() {
         var scntDiv = $('#route');
         var i = $('#route p').size() + 1;
-        
+
         $('#addScnt').click(function() {
-            $('<div class="col-md-4 col-md-offset-4"><div class="form-control"><label>Điểm đến</label><input type="text" name="come_place' + i + '" class="form-control"></div><br><div class="form-control"><label>Ngày đến</label><input type="text" name="come_date' + i + '" class="form-control"></div><br><div class="form-control"><label>Thời gian ở lại</label><input type="text" name="stay_time' + i + '" class="form-control"></div><br><div class="form-control"><label>Nơi ở</label><input type="text" name="stay_place' + i + '" class="form-control"></div><br><div class="form-control"><label>Hoạt động</label><input type="text" name="activity' + i + '" class="form-control"></div><br><div class="form-control"><label>Phương tiện di chuyển đến điểm tiếp theo</label><input type="text" name="vehicle' + i + '" class="form-control"></div><br><div class="form-control"><label>Thời gian di chuyển đến điểm tiếp theo</label><input type="text" name="travel_time' + i + '" class="form-control"></div><br><a href="#" id="remScnt"><i class="fa fa-trash" aria-hidden="true"></i></a><br><br></div>').appendTo(scntDiv);
+            $('<div class="col-md-6"><h4>Lộ Trình '+i+'</h4><br><div class="form-control"><label>Điểm đến</label><input type="text" name="comeplace'+i+'" class="form-control"></div><br><br><div class="form-control"><label>Ngày đến</label><input type="date" name="comedate'+i+'" class="form-control"></div><br><br><div class="form-control"><label>Thời gian ở lại</label><input type="text" name="staytime'+i+'" class="form-control"></div><br><br><div class="form-control"><label>Nơi ở</label><input type="text" name="stayplace'+i+'" class="form-control"></div><br><br><div class="form-control"><label>Hoạt động</label><textarea name="activity'+i+'" rows="4" class="form-control"></textarea></div><br><br><br><br><div class="form-control"><label>Phương tiện di chuyển tiếp</label><input type="text" name="vehicle'+i+'" class="form-control"></div><br><br><div class="form-control"><label>Thời gian di chuyển đến điểm tiếp theo</label><input type="text" name="traveltime'+i+'" class="form-control"></div><br><br><br></div>').appendTo(scntDiv);
             i++;
             return false;
         });
-        
-        $('#remScnt').live('click', function() { 
-            if( i > 2 ) {
-                $(this).parents("p").remove();
-                i--;
-            }
-            return false;
-        });
+
+
     });
 
 
