@@ -65,6 +65,14 @@ class PlanController extends Controller
                 $route[$j] = $array;
             }
         Route::insert($route);
+
+        $join = new Join;
+        $join->user_id = Auth::user()->id;
+        $join->plan_id = $id;
+        $join->join = 2;
+        $join->created_at = new DateTime();
+        $join->save(); 
+
         return redirect()->route('getHome');
 
     }

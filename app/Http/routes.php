@@ -17,6 +17,7 @@ Route::get('ggmap', function() {
 	return view('ggmaps');
 });
 
+Route::get('/{id}/plan', ['as' => 'getPlan', 'uses' => 'User\PlanController@getPlan']);
 
 // Route::get('/',['as' => 'getLogin', 'uses' => 'LoginController@getLogin']);
 Route::post('login', ['as' => 'postLogin', 'uses' => 'LoginController@postLogin']);
@@ -33,7 +34,7 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::post('/newplan', ['as' => 'postNewPlan', 'uses' => 'PlanController@postNewPlan']);
 
 
-		Route::get('/{id}/plan', ['as' => 'getPlan', 'uses' => 'PlanController@getPlan']);
+		// Route::get('/{id}/plan', ['as' => 'getPlan', 'uses' => 'PlanController@getPlan']);
 	});
 });
 
