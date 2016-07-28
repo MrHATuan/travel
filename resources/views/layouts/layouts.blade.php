@@ -71,7 +71,7 @@
 				@endif
 				@if (Auth::check())
 					<li>
-						<a href="javascript:void(0)" class="btn" data-toggle="modal" onclick="openNewPlan();">
+						<a href="javascript:void(0)" class="btn" data-toggle="modal" data-target="#newPlan">
 							<i class="fa fa-paper-plane" aria-hidden="true"></i> Tạo Kế Hoạch
 						</a>
 					</li>
@@ -141,7 +141,6 @@
 	<script type="text/javascript" src="{!! asset('assets/js/material.min.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('assets/js/material-kit.js') !!}"></script>
 	<script type="text/javascript" src="{!! asset('assets/js/hipster-cards.js') !!}"></script>
-	<script src="{!! asset('assets/js/myscript.js') !!}"></script>
 
 	<script type="text/javascript">
 		$().ready(function(){
@@ -152,30 +151,5 @@
 				$(window).on('scroll', materialKitDemo.checkScrollForParallax);
 			}
 		});
-
-		$().ready(function(){       	
-        	var $container = $('.masonry-container');
-            doc_width = $(document).width();            
-            if (doc_width >= 768){
-                $container.masonry({
-                    itemSelector        : '.card-box',
-                    columnWidth         : '.card-box',
-                    transitionDuration  : 0
-                });   
-            } else {
-                $('.mas-container').removeClass('mas-container').addClass('row');
-            }            
-    	});
-
-    	function showNewPlan(){
-	        $('.planBox').fadeIn('fast');    
-	    }
-
-	    function openNewPlan(){
-	        showNewPlan();
-	        setTimeout(function(){
-	            $('#newPlan').modal('show');    
-	        }, 230);	        
-	    }	
 	</script>
 </html>

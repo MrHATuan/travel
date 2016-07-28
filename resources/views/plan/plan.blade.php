@@ -2,107 +2,31 @@
 @section('title', 'Tên Plan')
 @section('content')
 
-<style>
-.blurred-container{
-  position:relative;
-  width:100%;
-  height:540px;
-  top:0;
-  left:0;
-}
-.blurred-container > .img-src{
-    position:fixed;
-    width:100%;
-    height:540px;
-    background-repeat:no-repeat;
-    background-size:cover;
-    background-position: center center;
-}
-
-.tim-title{
-    margin-top: 30px;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.section-gray{
-    padding: 10px 0;
-    background-color: #EEE;
-}
-.section-gray h5{
-    margin: 0;
-    line-height: 35px;
-}
-
-.division {
-    float: none;
-    margin: 0 auto 18px;
-    overflow: hidden;
-    position: relative;
-    text-align: center;
-    width: 100%;
-}
-.division .line {
-    border-top: 2px solid #DFDFDF;
-    position: absolute;
-    top: 5px;
-    width: 34%;
-}
-.division .line.l {
-    left: 0;
-}
-.division .line.r {
-    right: 0;
-}
-.division span {
-    color: #424242;
-    font-size: 20px;
-}
-
-.listLT {
-	text-align: center;
-}
-
-fieldset {
-    padding: 10px;
-    border: 1px solid silver;
-    text-align: left;
-    margin: 0px auto;
-    /** Thêm CSS 3.0 **/
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-}
-legend {
-    text-transform: uppercase;
-    color: #0A71A5;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-</style>
+<link rel="stylesheet" href="{!! asset('assets/css/mystyle/plans.css') !!}" />
 
 
 <div class='blurred-container'>
-  <div class="img-src" style="background-image: url('{{asset('assets/img/cover_4.jpg') }}')"></div>
+  <div class="img-src" style="background-image: url('{{asset('uploads/plans/'.$plan["cover_plan"]) }}')"></div>
 </div>
 
 <div class="main">
 	<div class="section-gray">
-{{-- Nếu là người đăng --}}
-		<div class="container">
+    @if((!Auth::check()) || ($plan["user_id"] != Auth::user()->id))
+    	<div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <h5 style="float:right;">Tên người đăng</h5>
+                    <h5 style="float:right;">Người tạo: {!! $users["name"] !!}</h5>
                 </div>
             </div>
         </div>
-{{-- Nếu k là người đăng thì <br> --}}
+    @else
+    	<br>
+    @endif
     </div>
 
 	<div class="container">
 		<div class="tim-title">
-            <h2>Tên kế hoạch</h2>
+            <h2>{{ $plan["name_plan"] }}</h2>
             <div class="division">
                 <div class="line l"></div>
                     <span>o0o</span>
@@ -111,63 +35,57 @@ legend {
         </div>
         <div class="row">
         	<div class="col-md-4 col-md-offset-8">
-        		<h5>Ngày bắt đầu: 11/12/2016</h5>
-        		<h6>Số lượng: 5/10</h6>
-        		<h4 style="color: #2E64FE">Trạng thái: Chưa bắt đầu</h4>
-        		{{-- Nếu check là thằng đăng thì cho cái buttom thay đổi trạng thái vào đây --}}
+        		<h5>Ngày bắt đầu: {{ date("d/m/Y", strtotime($plan["date_start"])) }}</h5>
+        		<h6>Số lượng: {{ $count }}/{{ $plan["max_user"] }}</h6>
+        	@if((!Auth::check()) || $plan["user_id"] != Auth::user()->id)
+        		@if($plan["status"] == 0)
+        			<h4 style="color: #2E64FE">Trạng thái: Chưa bắt đầu</h4>
+        		@elseif($plan["status"] == 1)
+        			<h4 style="color: #2E64FE">Trạng thái: Đang diễn ra</h4>
+        		@else
+					<h4 style="color: #2E64FE">Trạng thái: Kết thúc</h4>
+        		@endif
+        	@elseif(Auth::check() && $plan["user_id"] == Auth::user()->id)
+                <h4 style="color: #2E64FE" id="status">Trạng thái: 
+                    @if($plan["status"] == 0)
+                        <button id="status" class="btn btn-raised btn-info" data-id="{{ $plan["status"] }}" value="{{ $plan["status"] }}">Chưa diễn ra</button>
+                    @elseif($plan["status"] == 1)
+                        <button id="status" class="btn btn-raised btn-info" data-id="{{ $plan["status"] }}" value="{{ $plan["status"] }}">Đang diễn ra</button>
+                    @else
+                        Đã kết thúc
+                    @endif
+                </h4>
+        	@endif
         	</div>
         </div>
 
         <div class="row">
-        	<div class="col-md-10 col-md-offset-1"> 
+        	<div class="col-md-8 col-md-offset-2"> 
         		<div class="row">
         			<fieldset>
 	        			<legend>Lộ trình</legend>
-
-	        			<div class="card-box col-md-6 col-sm-6 listLT">
+	        			<?php
+	        			$i=0;
+	        			?>
+	        			@foreach($route as $item)
+	        			<?php
+	        			$i=$i+1;
+	        			?>
+	        			<div class="card-box col-md-6 col-sm-6">
                             <div class="card"> 
 	                            <div class="content">
-			        				<h4 class="title">Lộ trình 1</h4>
-			        				<label>Điểm đến</label><br>
-			        				<label>Hà Nội</label><br>
-			        				<label>Ngày đến</label><br>
-			        				<label>11/12/2012</label><br>
+			        				<h4 class="title">Lộ trình {{ $i }}</h4>
+			        				<label>Điểm đến: {{ $item["come_place"] }}</label><br>
+			        				<label>Ngày đến: {{ $item["come_date"] }}</label><br>
+			        				<label>Thời gian ở lại: {{ $item["stay_time"] }}</label><br>
+			        				<label>Nơi ở: {{ $item["stay_place"] }}</label><br>
+			        				<label>Hoạt động: {{ $item["activity"] }}</label><br>
+			        				<label>Phương tiện di chuyển tiếp: {{ $item["vehicle"] }}</label><br>
+			        				<label>Thời gian di chuyển tiếp: {{ $item["travel_time"] }}</label><br>
 			        			</div>
 		        			</div>
 	        			</div>
-	        			<div class="card-box col-md-6 col-sm-6 listLT">
-                            <div class="card"> 
-	                            <div class="content">
-			        				<h4 class="title">Lộ trình 2</h4>
-			        				<label>Điểm đến</label><br>
-			        				<label>Hà Nội</label><br>
-			        				<label>Ngày đến</label><br>
-			        				<label>11/12/2012</label><br>  		
-			        			</div>
-		        			</div>
-	        			</div>
-	        			<div class="card-box col-md-6 col-sm-6 listLT">
-                            <div class="card">
-	                            <div class="content"> 
-			        				<h4 class="title">Lộ trình 3</h4>
-			        				<label>Điểm đến</label><br>
-			        				<label>Hà Nội</label><br>
-			        				<label>Ngày đến</label><br>
-			        				<label>11/12/2012</label><br>      			
-			        			</div>
-		        			</div>
-	        			</div>
-	        			<div class="card-box col-md-6 col-sm-6 listLT">
-                            <div class="card"> 
-	                            <div class="content">
-			        				<h4 class="title">Lộ trình 4</h4>
-			        				<label>Điểm đến</label><br>
-			        				<label>Hà Nội</label><br>
-			        				<label>Ngày đến</label><br>
-			        				<label>11/12/2012</label><br>      			
-			        			</div>
-		        			</div>
-	        			</div>
+	        			@endforeach
         			</fieldset>
         		</div>
         		
@@ -177,27 +95,277 @@ legend {
     				<br><br>
         		</div>
         		<div class="row">
-
         			<div class="col-md-6 col-md-offset-6">
-        				cho 2 cái butom vào đây đc không chắc phải dùng script lại khó khăn rồi<br>
-        				Thằng create thì cho 1 cái nút edit để chuyển đến trang sữa
-
+        				@if(Auth::check() && $plan["user_id"] != Auth::user()->id)
+        					<div id="check_follow" class="col-md-6">
+                                @if($countjoin == 0)
+                                    @if($follow == 0)
+                                        <button id="follow" class="btn btn-raised btn-block pull-right btn-primary" data-id="{{ $follow }}">Theo dõi</button>
+                                    @elseif($follow == 1)
+                                        <button id="follow" class="btn btn-raised btn-block pull-right btn-primary" data-id="{{ $follow }}">Đang theo dõi</button>
+                                    @endif
+                                @endif
+                                <div id="btnfollow" style="display: none;">
+                                    <button id="follow" class="btn btn-raised btn-block pull-right btn-primary" data-id="1">Đang theo dõi</button>
+                                </div>
+                        	</div>
+                        	<div class="col-md-6">
+                                @if($plan["status"] == 0)
+                                    @if($countjoin == 0 )
+                                        <button id="join" class="btn btn-raised btn-block  btn-primary unjoin">Tham gia</button>
+                                    @elseif($countjoin == 1)
+                                        @if($userjoin[0]["join"] == 0)
+                                            <button id="join" class="btn btn-raised btn-block  btn-primary" data-id="{{ $userjoin[0]["join"] }}">Đang yêu cầu</button>
+                                        @elseif($userjoin[0]["join"] == 1)
+                                            <button id="join" class="btn btn-raised btn-block  btn-primary" data-id="{{ $userjoin[0]["join"] }}">Đã tham gia</button>
+                                        @endif
+                                    @endif
+                                @endif
+                        	</div>	
+        				@elseif(Auth::check() && Auth::user()->id == $plan["user_id"])
+                            @if($plan["status"] == 0)
+                                <a href="javascript:void(0)" class="btn btn-raised pull-right btn-primary" id="btnEditPlan" data-toggle="modal" data-target="#editPlan">Sửa Kế Hoạch</a>    
+        				    @endif
+                        @endif
         			</div>
         		</div>
+                <br><br>
         	</div>
 		</div>
+
 		<div class="row">
-			<div class="col-md-6 col-md-offset-2">
-				Cho danh sánh join vào đây
-			</div>
+        {{-- <div class="container"> --}}
+            <div class="col-md-10 col-md-offset-1 comment">
+                <div class="row">
+        			<div class="joined">
+        				<button class="btn btn-raised btn-info" data-toggle="modal" data-target="#myComment"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ $count }} người đã tham gia</button>
+        			</div>
+                </div>
+                <div class="row">
+        		
+                    @include('plan.comment')
+        
+                </div>
+                <br><br>
+            </div>
+        {{-- </div> --}}
 		</div>
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1"> 
-				Comment ở đây
-				<br><br><br>
-			</div>
-		</div>
+        <br><br><br>
 	</div>
 </div>
+
+{{-- include edit plan --}}
+@include('plan.editplan')
+
+{{-- show danh sách tham gia --}}
+<div class="modal fade join" id="myComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Danh Sách Tham Gia</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+        	<tbody>        	
+	        @if(Auth::check() && $plan["user_id"] == Auth::user()->id)
+	        	@foreach($join as $item)
+	        		<tr class="list-join">
+	        			<td><img src="{{asset('uploads/avatars/'.$item["avatar"]) }}" style="width: 35px; height: 35px;"></td>
+	        			<td>{{ $item["name"] }}</td>
+	        			@if($item["join"] == 0)
+	        				<td>
+                                <button id="accept" class="btn btn-raised btn-primary" data-id="{{ $item["user_id"] }}">Đồng ý</button>
+                                <script>
+                                        // *********** Accept or Reject Join //
+                                    $('button#accept').click(function(e){
+                                        e.preventDefault();
+                                        $button = $(this);
+                                        var accept = {'id': $(this).data('id')};
+                                        $.ajax({
+                                            type: 'GET',
+                                            url: '{{ route('acceptJoin', $plan["id"]) }}',
+                                            async: true,
+                                            data: accept,
+                                        });
+                                        $(this).parent().remove();
+                                    });
+                                </script>
+                                <button id="reject" class="btn btn-raised btn-primary" data-id="{{ $item["user_id"] }}">Từ chối</button>
+                                <script>
+                                    $('button#reject').click(function(e){
+                                        e.preventDefault();
+                                        $button = $(this);
+                                        var reject = {'id': $(this).data('id')};
+                                        $.ajax({
+                                            type: 'GET',
+                                            url: '{{ route('rejectJoin', $plan["id"]) }}',
+                                            async: true,
+                                            data: reject,
+                                        });
+                                        $(this).parent().parent().remove();
+                                    });
+
+                                </script>
+    
+                            </td>
+	        			@endif
+	        		</tr>
+                    
+                    <script>
+                        $('button#reject').click(function(e){
+                            e.preventDefault();
+                            $button = $(this);
+                            var reject = {'id': $(this).data('id')};
+                            $.ajax({
+                                type: 'GET',
+                                url: '{{ route('rejectJoin', $item["id"]) }}',
+                                async: true,
+                                data: reject,
+                            });
+                            $(this).parent().parent().remove();
+                        });
+
+                    </script>
+	        	@endforeach
+	        @else
+	        	@foreach($join as $item)
+	        		@if($item["join"] == 1)
+		        		<tr>
+		        			<td><img src="{{asset('uploads/avatars/'.$item["avatar"]) }}" style="width: 35px; height: 35px;"></td>
+		        			<td>{{ $item["name"] }}</td>
+		        			<td></td>
+		        		</tr>
+		        	@endif
+	        	@endforeach
+	        @endif
+        	</tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+// ****** js phím trạng thái ********** //
+
+ $('button#status').click(function(e) {
+    e.preventDefault();
+    $button =  $(this);
+    var dataStatus = $(this).data('id');
+
+    if($button.hasClass('start') || (dataStatus == 1)){
+        $button.removeClass('start');
+        dataStatus = 2;
+        $.ajax({
+            type: 'GET',
+            url: '{{ route('getStatus', $plan["id"]) }}',
+            async: true,
+        });
+        $button.remove();
+        $("#status").append("Đã Kết thúc");
+    }else {
+        $button.addClass('start')
+        $button.text('Đang diễn ra')
+        dataStatus = 1;
+        $("#btnEditPlan").remove();
+        $.ajax({
+            type: 'GET',
+            url: '{{ route('getStatus', $plan["id"]) }}',
+            async: true,
+        });
+    }
+ });
+
+
+ // ******** Join ************ //
+
+$('button#join').click(function(e) {
+    e.preventDefault();
+    $button = $(this);
+    var dataJoin = $(this).data('id');
+    
+    if($button.hasClass('joining') || (dataJoin == 0)) {
+        // bỏ yêu cầu tham gia
+        $button.removeClass('joining');
+        $button.addClass('unjoin');
+        $button.text('Tham gia');
+        $("#btnfollow").show();
+        $.ajax({
+            type: 'GET',
+            url: '{{ route('delJoin', $plan["id"]) }}',
+            async: true,
+        });
+    } else if($button.hasClass('unjoin')){
+        // gửi yêu cầu
+        $("#follow").hide();
+        $("#btnfollow").hide();
+        $button.addClass('joining');
+        $button.removeClass('unjoin');
+        $button.text('Đang yêu cầu');
+        $dataJoin = 0;
+        $.ajax({
+            type: 'GET',
+            url: '{{ route('getJoin', $plan["id"]) }}',
+            async: true,
+        });
+    }else if(dataJoin == 1) {            
+        //$.ajax(); bỏ tham  gia            
+        $button.removeClass('joined');
+        $button.addClass('unjoin');
+        $button.text('Tham gia');
+        // Neu bo tham gia thi hiển thị nút follow
+        $("#btnfollow").show();
+        $.ajax({
+            type: 'GET',
+            url: '{{ route('delJoin', $plan["id"]) }}',
+            async: true,
+        });
+    }
+
+});
+
+
+ // ******** Follow ************* //
+
+$('button#follow').click(function(e){
+    e.preventDefault();
+    $button = $(this);
+    var dataFollow = $(this).data('id');
+    if($button.hasClass('following') || (dataFollow == 1)){        
+        //$.ajax(); Do Unfollow       
+        $button.removeClass('following');
+        $button.removeClass('unfollow')
+        $button.text('Theo dõi');
+        $.ajax({
+            type: 'GET',
+            url: '{{ route('delFollow', $plan["id"]) }}',
+            async: true,
+        });
+
+    } else {
+        $button.addClass('following');
+        $button.text('Đang theo dõi');
+        dataFollow = 1;
+        $.ajax({
+            type: 'GET',
+            url: '{{ route('getFollow', $plan["id"]) }}',
+            async: true,
+        });
+    }
+});
+
+
+
+
+
+
+ // ********* Comment ********* //
+
+
+
+</script>
+
 
 @endsection

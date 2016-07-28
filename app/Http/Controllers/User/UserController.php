@@ -20,7 +20,6 @@ class UserController extends Controller
 
     public function postEditProfile(UserRequest $request, $name) {
         $user = Auth::user();
-
         if($request->hasFile('cover')) {
             $cover = $request->file('cover');
             $filecover = time() . '.' . $cover->getClientOriginalExtension();

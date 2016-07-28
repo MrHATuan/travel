@@ -84,6 +84,12 @@
                         </div>
                     @endforeach
                     
+                    <a href="#" class="first" data-action="first">&laquo;</a>
+                    <a href="#" class="previous" data-action="previous">&lsaquo;</a>
+                    <input type="text" readonly="readonly" data-max-page="40" />
+                    <a href="#" class="next" data-action="next">&rsaquo;</a>
+                    <a href="#" class="last" data-action="last">&raquo;</a>
+                    
                 </div>
             </div>
             <br>
@@ -108,64 +114,25 @@
                 </div>
 
                 <div class="masonry-container">
-
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <h6 class="category">Ngày bắt đầu: 11/11/2011</h6>
-                                <p class="description">Đã đăng 2 ngày trước</p>
-                            </div>                                           
+{{-- 
+                    @foreach($hotplan as $hotplan_data)
+                        <div class="card-box col-md-4 col-sm-6">
+                            <div class="card">                            
+                                <div class="header">
+                                        <img src="{!! asset('uploads/plans/' .$hotplan_data["cover_plan"])  !!}"/>
+                                        <div class="filter"></div>
+                                </div>                           
+                                <div class="content">
+                                    <h4 class="title"><a href="{{ route('getPlan', $hotplan_data["id"]) }}">{{ $hotplan_data["name_plan"] }}</a></h4>
+                                    <h6 class="category">Ngày bắt đầu: {{ date("d-m-Y", strtotime($hotplan_data["date_start"])) }}</h6>
+                                    <p class="description">Đã đăng {{ \Carbon\Carbon::createFromTimeStamp(strtotime($hotplan_data["created_at"]))->diffForHumans() }}</p>
+                                    <p>Số người theo dõi: {{$hotplan_data->follows->count()}}</p>
+                                </div>                                           
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <h6 class="category">Ngày bắt đầu: 11/11/2011</h6>
-                                <p class="description">Đã đăng 2 ngày trước</p>
-                            </div>                                           
-                        </div>
-                    </div>
-
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <h6 class="category">Ngày bắt đầu: 11/11/2011</h6>
-                                <p class="description">Đã đăng 2 ngày trước</p>
-                            </div>                                           
-                        </div>
-                    </div>
-
-                    <div class="card-box col-md-4 col-sm-6">
-                        <div class="card">                            
-                            <div class="header">
-                                <img src="assets/img/lifestyle-8.jpg"/>
-                                <div class="filter"></div>
-                            </div>                           
-                            <div class="content">
-                                <h4 class="title"><a href="#">Chuyến du lịch cắt tóc</a></h4>
-                                <h6 class="category">Ngày bắt đầu: 11/11/2011</h6>
-                                <p class="description">Đã đăng 2 ngày trước</p>
-                            </div>                                           
-                        </div>
-                    </div>
-
-                    
+                    @endforeach
+ --}}
+        
                 </div>
 
             </div>

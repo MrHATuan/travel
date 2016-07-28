@@ -1,3 +1,4 @@
+
 var transparent = true;
 
 var transparentDemo = true;
@@ -107,4 +108,11 @@ function debounce(func, wait, immediate) {
 		}, wait);
 		if (immediate && !timeout) func.apply(context, args);
 	};
+};
+
+function xacnhanxoa(msg){
+    if (window.confirm(msg)) {
+        return true;
+    }
+    return false;
 };

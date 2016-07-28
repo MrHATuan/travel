@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="{!! asset('assets/css/mystyle/plans.css') !!}" />
 
 
@@ -27,7 +26,7 @@
                     					<div class="title text-center">
                     						<h3>Tên Kế Hoạch</h3> 
                     					</div>
-                    					<input type="text" name="nameplan" id="nameplan" class="form-control" style="font-size: 20px;">
+                    					<input type="text" name="nameplan" id="nameplan" class="form-control" placeholder="Tên kế hoạch" style="font-size: 20px;">
                     					<br><br>
                 					</div>
                 				</div>
@@ -65,8 +64,8 @@
                     				</div>
                 					<br><br>
                 				</div>
-                                <div class="col-md-8 col-md-offset-2" id="route">
-                                                                        
+                                <div class="col-md-8 col-md-offset-2" id="newRoute">
+                                         {{-- Thêm các lộ trình của kế hoạch vào đây --}}
                                 </div>
                                 <div class="col-md-4 col-md-offset-4">
                                     <a href="#" class="btn" id="addScnt">
@@ -77,7 +76,7 @@
                             <br><br>
                 			<div class="row">
                                 <div class="col-md-4 col-md-offset-4">
-                                    <input type="submit" name="commit" value="Tạo Kế Hoạch" class="btn btn-raised btn-block pull-right btn-primary">
+                                    <input type="submit" name="commit" value="Tạo Kế Hoạch" class="btn btn-raised btn-block pull-right btn-primary" onclick="return xacnhanxoa('Bạn Có Chắc Muốn Lập Kế Hoạch Này?')">
                                 </div> 
                             </div>
                 		</form>
@@ -116,17 +115,14 @@
     });
 
     $(function() {
-        var scntDiv = $('#route');
-        var i = $('#route p').size() + 1;
-
+        var scntDiv = $('#newRoute');
+        var i=1;
         $('#addScnt').click(function() {
-            $('<div class="col-md-6"><h4>Lộ Trình '+i+'</h4><br><div class="form-control"><label>Điểm đến</label><input type="text" name="comeplace'+i+'" class="form-control"></div><br><br><div class="form-control"><label>Ngày đến</label><input type="date" name="comedate'+i+'" class="form-control"></div><br><br><div class="form-control"><label>Thời gian ở lại</label><input type="text" name="staytime'+i+'" class="form-control"></div><br><br><div class="form-control"><label>Nơi ở</label><input type="text" name="stayplace'+i+'" class="form-control"></div><br><br><div class="form-control"><label>Hoạt động</label><textarea name="activity'+i+'" rows="4" class="form-control"></textarea></div><br><br><br><br><div class="form-control"><label>Phương tiện di chuyển tiếp</label><input type="text" name="vehicle'+i+'" class="form-control"></div><br><br><div class="form-control"><label>Thời gian di chuyển đến điểm tiếp theo</label><input type="text" name="traveltime'+i+'" class="form-control"></div><br><br><br></div>').appendTo(scntDiv);
+            $('<div class="col-md-6"><h4>Lộ Trình '+i+'</h4><br><div class="form-group"><label>Điểm đến</label><input type="text" name="comeplace'+i+'" class="form-control"></div><div class="form-group"><label>Ngày đến</label><input type="date" name="comedate'+i+'" class="form-control"></div><div class="form-group"><label>Thời gian ở lại</label><input type="text" name="staytime'+i+'" class="form-control"></div><div class="form-group"><label>Nơi ở</label><input type="text" name="stayplace'+i+'" class="form-control"></div><div class="form-group"><label>Hoạt động</label><textarea name="activity'+i+'" rows="4" class="form-control"></textarea></div><div class="form-group"><label>Phương tiện di chuyển tiếp</label><input type="text" name="vehicle'+i+'" class="form-control"></div><div class="form-group"><label>Thời gian di chuyển đến điểm tiếp theo</label><input type="text" name="traveltime'+i+'" class="form-control"></div><br><br></div>').appendTo(scntDiv);
             i++;
             return false;
         });
-
-
-    });
+   });
 
 
 

@@ -17,9 +17,10 @@ Route::get('ggmap', function() {
 	return view('ggmaps');
 });
 
+
+
 Route::get('/{id}/plan', ['as' => 'getPlan', 'uses' => 'User\PlanController@getPlan']);
 
-// Route::get('/',['as' => 'getLogin', 'uses' => 'LoginController@getLogin']);
 Route::post('login', ['as' => 'postLogin', 'uses' => 'LoginController@postLogin']);
 Route::post('register',['as' => 'postRegister', 'uses' => 'LoginController@postRegister']);
 Route::get('logout', ['as' => 'getLogout', 'uses' => 'LoginController@getLogout']);
@@ -28,13 +29,37 @@ Route::get('logout', ['as' => 'getLogout', 'uses' => 'LoginController@getLogout'
 Route::group(['middleware' => 'auth'], function() {
 	Route::group(['prefix' => 'user', 'namespace' => 'User'], function() {
 		Route::get('/{name}',['as' => 'getProfile', 'uses' => 'PlanController@getProfile']);
+
+			// set user profile
 		Route::get('/{name}/edit-profile', ['as' => 'getEditProfile', 'uses' => 'UserController@getEditProfile']);
 		Route::post('/{name}/edit-profile', ['as' => 'postEditProfile', 'uses' => 'UserController@postEditProfile']);
 
+			// new plan
 		Route::post('/newplan', ['as' => 'postNewPlan', 'uses' => 'PlanController@postNewPlan']);
 
+			// edit plan
+		Route::post('/{id}/editplan', ['as' => 'postEditPlan', 'uses' => 'PlanController@postEditPlan']);
+			// delete route
+		Route::get('{id}/delroute', ['as' => 'getDelRoute', 'uses' => 'PlanController@getDelRoute']);
 
-		// Route::get('/{id}/plan', ['as' => 'getPlan', 'uses' => 'PlanController@getPlan']);
+		 	// edit plan status
+		Route::get('{id}/status', ['as' => 'getStatus', 'uses' => 'PlanController@getStatus']);
+
+			// set user follow
+		Route::get('{id}/follow', ['as' => 'getFollow', 'uses' => 'PlanController@getFollow']);
+		Route::get('{id}/delfollow', ['as' => 'delFollow', 'uses' => 'PlanController@delFollow']);
+
+			// set user join
+		Route::get('{id}/join', ['as' => 'getJoin', 'uses' => 'PlanController@getJoin']);
+		Route::get('{id}/deljoin', ['as' => 'delJoin', 'uses' => 'PlanController@delJoin']);
+		Route::get('{id}/acceptjoin', ['as' => 'acceptJoin', 'uses' => 'PlanController@acceptJoin']);
+		Route::get('{id}/rejectjoin', ['as' => 'rejectJoin', 'uses' => 'PlanController@rejectJoin']);
+
+		Route::get('{id}/newcomment', ['as' => 'getNewComment', 'uses' => 'CommentController@getNewComment']);
+		Route::get('{id}/replycomment', ['as' => 'getReplyCm', 'uses' => 'CommentController@getReplyCm']);
+
+
+
 	});
 });
 

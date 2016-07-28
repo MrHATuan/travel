@@ -33,16 +33,22 @@
           animation-duration: 4s;
 }
 
-.newplan .modal-dialog{
+.editplan.modal-dialog, .newplan.modal-dialog{
     width: 1000px;
 }
 
-.newplan .modal-header {
+.join .modal-dialog{
+    width: 500px;
+}
+
+.table tr:nth-child(even){background-color: #f2f2f2}
+
+.modal-header {
     border: 0 none;
     padding: 15px 15px 5px;
     font-size: 20px;
 }
-.newplan .division {
+.division {
     float: none;
     margin: 0 auto 18px;
     overflow: hidden;
@@ -50,19 +56,19 @@
     text-align: center;
     width: 100%;
 }
-.newplan .division .line {
+.division .line {
     border-top: 1px solid #DFDFDF;
     position: absolute;
     top: 5px;
     width: 34%;
 }
-.newplan .division .line.l {
+.division .line.l {
     left: 0;
 }
-.newplan .division .line.r {
+.division .line.r {
     right: 0;
 }
-.newplan .division span {
+.division span {
     color: #424242;
     font-size: 17px;
 }
@@ -96,4 +102,158 @@ input[type="file"] {
     color: #c0392b;
 }
 
+/*Css Plan*/
 
+.blurred-container{
+  position:relative;
+  width:100%;
+  height:540px;
+  top:0;
+  left:0;
+}
+.blurred-container > .img-src{
+    position:fixed;
+    width:100%;
+    height:540px;
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position: center center;
+}
+
+.tim-title{
+    margin-top: 30px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.section-gray{
+    padding: 10px 0;
+    background-color: #EEE;
+}
+.section-gray h5{
+    margin: 0;
+    line-height: 35px;
+}
+
+fieldset {
+    background-color: #f5f5f5;
+    padding: 10px;
+    /*border: 1px solid silver;*/
+    text-align: left;
+    margin: 0px auto;
+    /** Thêm CSS 3.0 **/
+    border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+}
+legend {
+    text-transform: uppercase;
+    color: #0A71A5;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+
+/* Css phần comment */
+
+.comment {
+    background: #F8F8F8;
+    border: 1px solid #a1a1a1;
+    border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+    height: auto;
+}
+
+.joined {
+    height: 60px;
+    margin: 10px 25px 20px;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+/*.comment-wrapper {
+    margin: 5px;
+    border: 1px solid #e1e1e1;
+    height: auto;
+    width: auto;
+    color: #444;
+}
+.comment-list, .comment-box {
+    height: auto;
+    width: auto;
+}
+.comment-list li{
+    list-style: none;
+}
+.comment-box img {
+    width: 40px;  
+    height: 40px;
+}
+.input-group {
+  margin-top: 1px;
+}
+.input-group .form-control {
+    background-color: #FFFFFF;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+    box-shadow: none;
+    color: #444444;
+    height: 38px;
+    padding-right: 45px;
+    padding: 6px 16px;
+}
+.input-group .form-control:focus {
+    background-color: #FFFFFF;
+    border: 1px solid #9A9A9A;
+    box-shadow: none;
+    outline: 0 none;
+}
+.input-group #cmImage {
+  margin-left: -50px;
+}
+.input-group .btn {
+    height: 37px;
+    margin-top: 0;
+}
+*/
+/*html
+/*
+<div class="comment-wrapper">
+  <div class="comment-list">
+      <ul class="comment-holder-ul">
+          @foreach($comment as $data)
+              <li class="comment-holder">
+                  <div class=form-group>
+                      <div class="col-lg-1">
+                          <img src="{{ asset('uploads/avatars/'. $data["avatar"]) }}">
+                      </div>
+                      <div class="col-lg-11">
+                          <label>{{ $data["name"] }}</label>
+                          <p>{{ $data["content"] }}</p>
+                      </div>
+                  </div>
+              </li>
+          @endforeach
+      </ul>
+  </div>
+          
+  <div class="comment-box">
+      <form action="" method="post" accept-charset="utf-8">                                                           
+          <div class="form-group">
+              <div class="col-lg-1">
+                  <img src="{{ asset('uploads/avatars/'.Auth::user()->avatar) }}">
+               </div>
+              <div class="col-lg-11">
+                  <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Bình luận...">
+                      <span class="input-group-btn">
+                          <button class="btn" id="cmImage"><i class="fa fa-camera fa-lg"></i><input type="file" name="cm_image"></button>
+                          <button class="btn btn-raised btn-default" type="button"><i class="fa fa-paper-plane-o fa-lg"></i></button>
+                      </span>
+                  </div>
+              </div>
+          </div>                                
+      </form>
+  </div> 
+</div>
+*/

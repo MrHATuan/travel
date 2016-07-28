@@ -1,6 +1,7 @@
 /* ANIMATION */
 /* SHADOWS */
 /* Shadows (from mdl http://www.getmdl.io/) */
+
 body {
   background-color: #CCCCCC;
 }
@@ -78,8 +79,7 @@ a .material-icons, a:hover .material-icons, a:focus .material-icons {
   margin: 0;
 }
 
-.btn,
-.input-group-btn .btn {
+.btn{
   border: none;
   border-radius: 3px;
   position: relative;
@@ -1063,31 +1063,6 @@ output {
   }
 }
 
-/*.label {
-  border-radius: 2px;
-}
-.label, .label.label-default {
-  background-color: #9e9e9e;
-}
-.label.label-inverse {
-  background-color: #3f51b5;
-}
-.label.label-primary {
-  background-color: #9c27b0;
-}
-.label.label-success {
-  background-color: #4caf50;
-}
-.label.label-info {
-  background-color: #03a9f4;
-}
-.label.label-warning {
-  background-color: #fbc02d;
-}
-.label.label-danger {
-  background-color: #f44336;
-}*/
-
 .form-control,
 .form-group .form-control {
   border: 0;
@@ -1463,25 +1438,11 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
   height: 85px;
 }
 
-.input-group-btn .btn {
-  margin: 0 0 7px 0;
-}
-
-.form-group.form-group-sm .input-group-btn .btn {
-  margin: 0 0 3px 0;
-}
-.form-group.form-group-lg .input-group-btn .btn {
-  margin: 0 0 9px 0;
-}
-
-.input-group .input-group-btn {
-  padding: 0 12px;
-}
-.input-group .input-group-addon {
+/*.input-group .input-group-addon {
   border: 0;
   background: transparent;
   padding: 12px 15px 0px;
-}
+}*/
 
 .form-group input[type=file] {
   opacity: 0;
@@ -2246,10 +2207,10 @@ h5, .h5 {
   margin-bottom: 15px;
 }
 
-h6, .h6 {
+/*h6, .h6 {
   font-size: 1em;
   text-transform: uppercase;
-}
+}*/
 
 .text-warning {
   color: #fbc02d;
@@ -2369,10 +2330,10 @@ h6, .h6 {
   display: none;
 }
 .carousel .left {
-  cursor: url("../img/arrow-left.png"), url("../img/arrow-left.cur"), default !important;
+  cursor: url("../../img/arrow-left.png"), url("../../img/arrow-left.cur"), default !important;
 }
 .carousel .right {
-  cursor: url("../img/arrow-right.png"), url("../img/arrow-right.cur"), default !important;
+  cursor: url("../../img/arrow-right.png"), url("../../img/arrow-right.cur"), default !important;
 }
 .carousel .carousel-indicators {
   bottom: 5px;
@@ -2604,7 +2565,7 @@ h6, .h6 {
   color: #555555;
 }
 
-.panel {
+/*.panel {
   border-radius: 2px;
   border: 0;
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
@@ -2642,7 +2603,7 @@ h6, .h6 {
 
 .panel-footer {
   background-color: #eeeeee;
-}
+}*/
 
 hr.on-dark {
   color: #1a1a1a;

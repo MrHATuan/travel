@@ -25,7 +25,7 @@ class LoginController extends Controller
     		'password' => $request->LoPass,
     	];
     	if (Auth::attempt($login)) {
-    		return redirect()->route('getHome');
+    		return redirect()->back();
     	} else {
     		return redirect()->back();
     	}
@@ -40,7 +40,7 @@ class LoginController extends Controller
         $user->created_at = new DateTime();
         $user->save();
         Auth::login($user);
-        return redirect()->route('getHome');
+        return redirect()->back();
     }
 
     public function getLogout() {

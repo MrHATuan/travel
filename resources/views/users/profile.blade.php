@@ -56,9 +56,7 @@ $name= Auth::user()->name;
                 </div>
                 <div class="col-md-8 col-md-offset-2">
                     <div class="col-md-4 col-md-offset-3">
-                    <button class="btn btn-raised btn-info">
-                        <a class="big-edit" data-toggle="modal" href="javascript:void(0)" onclick="openEditModal();">Sữa Thông Tin</a>    
-                    </button>
+                        <a class="btn btn-raised pull-right btn-info" data-toggle="modal" href="javascript:void(0)" onclick="openEditModal();">Sữa Thông Tin</a>    
                     </div>
                 </div>
             </div>
@@ -174,17 +172,14 @@ $name= Auth::user()->name;
 <script type="text/javascript">
     function showEditForm(){
         $('.editBox').fadeIn('fast');    
-        // $('.modal-title').html('Cập Nhật Thông Tin');
     }
 
     function openEditModal(){
         showEditForm();
         setTimeout(function(){
             $('#editModal').modal('show');    
-        }, 230);
-        
+        }, 230);       
     }
-
 </script>
 
 @endsection
