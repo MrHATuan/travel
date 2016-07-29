@@ -89,13 +89,13 @@ $name= Auth::user()->name;
                                     <img src="{{ asset('uploads/covers/' . $user->cover) }}" id="Cover" class="img-thumbnail" style="width: 900px; height: 550px;"">
                                 </div>
                                 <br><br>     
-                                    <form action="{{ route('getEditProfile', Auth::user()->name) }}" method="post" enctype="multipart/form-data">
+                                    <form action="{{ route('getEditProfile', Auth::user()->name) }}" method="post" enctype="multipart/form-data" id="profile-form">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <div class="row">
                                             <div class="col-md-6 col-md-offset-3">
-                                                <span class="btn btn-file">
-                                                    <button type="button" class="fileupload-new btn btn-info btn-simple btn-upload">Đổi Ảnh Bìa</button>
-                                                    <input type="file" name="cover" value="{{ $user->cover }}" placeholder="{{ $user->cover }}" onchange="readURL(this);">
+                                                <div class="form-group">
+                                                    <label for="field"></label>
+                                                    <button type="button" class="btn btn-info">Đổi Ảnh Bìa<input type="file" name="cover" id="cover" value="{{ $user->cover }}" placeholder="{{ $user->cover }}" onchange="readURL(this);"></button>            
                                                     <script type="text/javascript">
                                                         function readURL(input) {
                                                             if (input.files && input.files[0]) {
@@ -107,17 +107,18 @@ $name= Auth::user()->name;
                                                             }
                                                         }                                                         
                                                     </script>
-                                                </span>
+                                                </div>
                                                 <br><br>
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="photo-container">
-                                                            <div>
-                                                                <img src="{{ asset('uploads/avatars/' . $user->avatar) }}" id="Avatar" style="width: 200px; height: 200px; float: left; border-radius: 50%; margin-right: 25px;" />
-                                                            </div>
-                                                            <span class="btn btn-file">
-                                                                <button type="button" class="fileupload-new btn btn-info btn-simple btn-upload">Đổi ảnh đại diện</button>
-                                                                <input type="file" name="avatar" value="{{ $user->avatar }}" placeholder="{{ $user->avatar }}" onchange="readURL1(this);">
+                                                            <div class="form-group">
+                                                                <div>
+                                                                    <img src="{{ asset('uploads/avatars/' . $user->avatar) }}" id="Avatar" style="width: 200px; height: 200px; float: left; border-radius: 50%; margin-right: 25px;" />
+                                                                </div>
+                                                                <label for="field"></label>
+                                                                <button type="button" class="btn btn-info">Đổi ảnh đại diện<input type="file" name="avatar" id="avatar" value="{{ $user->avatar }}" placeholder="{{ $user->avatar }}" onchange="readURL1(this);"></button>
+                                                                
                                                                 <script type="text/javascript">
                                                                     function readURL1(input) {
                                                                         if (input.files && input.files[0]) {
@@ -129,7 +130,7 @@ $name= Auth::user()->name;
                                                                         }
                                                                     }                                                         
                                                                 </script>
-                                                            </span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -141,13 +142,12 @@ $name= Auth::user()->name;
                                                 <label>Họ Tên</label>
                                                 <input type="text" name="name" id="name" class="form-control" value="{!! old('name', isset($user) ? $user->name : null) !!}">
                                                 <br>
-                                                <label>Mật Khẩu Cũ</label>
+                                                {{-- <label>Mật Khẩu Cũ</label> 
                                                 <input type="password" name="oldPass" id="oldPass" class="form-control" placeholder="Mật Khẩu Cũ">
                                                 <label>Mật Khẩu Mới</label>
                                                 <input type="password" name="password" id="password" class="form-control" placeholder="Mật Khẩu Mới">
-                                                <br>
                                                 <label>Xác Nhận Mật Khẩu Mới</label>
-                                                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Mật Khẩu Xác Nhận">
+                                                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Mật Khẩu Xác Nhận"> --}}
                                                 <br>
                                             </div>  
                                         </div>
@@ -172,14 +172,38 @@ $name= Auth::user()->name;
 <script type="text/javascript">
     function showEditForm(){
         $('.editBox').fadeIn('fast');    
-    }
+    };
 
     function openEditModal(){
         showEditForm();
         setTimeout(function(){
             $('#editModal').modal('show');    
         }, 230);       
-    }
+    };
+
+    $("#profile-form").validate({
+        rules:{
+            cover: {
+                extension: "png|jpe?g|gif",
+                filesize: 5242880,
+            },
+            avatar: {
+                extension: "png|jpe?g|gif",
+                filesize: 5242880,
+            },
+        },
+        messages:{
+            cover: {
+                extension: "Không đúng định dạng file ảnh",
+                filesize: "Kích thước file quá lớn",
+            },
+            avatar: {
+                extension: "Không đúng định dạng file ảnh",
+                filesize: "Kích thước file quá lớn",
+            },
+        }
+    });
+    
 </script>
 
 @endsection

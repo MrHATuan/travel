@@ -10,7 +10,7 @@ class Route extends Model
     protected $guarded = [];
 
 
-     public function routeplan() {
+     public function plans() {
     	return $this->belongsTo('App\Models\Plan');
     }
 

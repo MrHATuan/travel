@@ -65,8 +65,8 @@
 .comment-reply{
     width: auto;
     height: auto;
-    margin-left:30px;
-    margin-bottom:5px;
+    margin-left:40px;
+    margin-bottom:8px;
     margin-right: 10px;
     background-color: #f5f5f5;
     border: 1px solid #e3e3e3;
@@ -91,9 +91,11 @@
   width: auto;
   height: auto;
   margin:10px;
+  margin-bottom: 15px;
 }
 .input-group {
   margin-top: 1px;
+  height: auto;
 }
 .input-group .form-control {
     background-color: #FFFFFF;
@@ -111,7 +113,7 @@
     box-shadow: none;
     outline: 0 none;
 }
-.input-group #btnReCmImg {
+.input-group #btnReCmImg{
   margin-left: -50px;
   margin-right: 5px;
 }
@@ -119,10 +121,23 @@
     height: 35px;
     margin-top: 0;
 }
+.comment-box .ReImage{
+  background-color: #FFFFFF;
+  margin-top: -7px;
+  margin-bottom: 5px;
+  margin-right: 52px;
+  border: 1px solid #e3e3e3;
+  width: auto;
+  height: auto;
+}
+.comment-box .ReImage .close{
+    color: #A9A9A9;
+    font-size: 20px;
+    margin-top: 3px;
+    margin-right: 8px;
+}
 
-
-
-/* Css box  */
+    /* Css comment form  */
 
 body{ background: #fafafa;}
 .widget-area.blank {
@@ -186,6 +201,7 @@ body .no-padding {
     width: 100%;
     resize:vertical;
     outline:none;
+    /*border: 1px solid #ff0000;*/
     border: 1px solid #F2F2F2;
 }
 
@@ -231,7 +247,6 @@ body .no-padding {
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
     border-radius: 4px;
-    /*color: #fff;*/
     float: right;
     font-family: Lato;
     font-size: 14px;
@@ -246,59 +261,6 @@ body .no-padding {
 .status-upload .form button > i {
    margin-right: 7px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -17,19 +17,19 @@ class User extends Authenticatable
     ];
 
 
-    public function userplan() {
+    public function plans() {
         return $this->hasMany('App\Models\Plan');
     }
 
-    public function userjoin() {
+    public function joins() {
         return $this->hasMany('App\Models\Join');
     }
 
-    public function userfollow() {
+    public function follows() {
         return $this->hasMany('App\Models\Follow');
     }
    
-   public function usercomment() {
+   public function comments() {
         return $this->hasMany('App\Models\Comment');
     }
 

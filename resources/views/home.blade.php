@@ -114,7 +114,7 @@
                 </div>
 
                 <div class="masonry-container">
-{{-- 
+
                     @foreach($hotplan as $hotplan_data)
                         <div class="card-box col-md-4 col-sm-6">
                             <div class="card">                            
@@ -126,12 +126,13 @@
                                     <h4 class="title"><a href="{{ route('getPlan', $hotplan_data["id"]) }}">{{ $hotplan_data["name_plan"] }}</a></h4>
                                     <h6 class="category">Ngày bắt đầu: {{ date("d-m-Y", strtotime($hotplan_data["date_start"])) }}</h6>
                                     <p class="description">Đã đăng {{ \Carbon\Carbon::createFromTimeStamp(strtotime($hotplan_data["created_at"]))->diffForHumans() }}</p>
+                                    <p>Số người tham gia: {{$hotplan_data->joins->count()}}</p>
                                     <p>Số người theo dõi: {{$hotplan_data->follows->count()}}</p>
                                 </div>                                           
                             </div>
                         </div>
                     @endforeach
- --}}
+
         
                 </div>
 

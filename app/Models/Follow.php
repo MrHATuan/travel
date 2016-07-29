@@ -10,11 +10,11 @@ class Follow extends Model
     protected $guarded = [];
 
 
-    public function followuser() {
+    public function user() {
     	return $this->belongsTo('App\Models\User');
     }
 
-    public function followplan() {
+    public function plan() {
     	return $this->belongsTo('App\Models\Plan');
     }
 

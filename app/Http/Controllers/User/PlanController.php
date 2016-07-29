@@ -25,13 +25,15 @@ class PlanController extends Controller
 
     public function getHome() {
         $newplan = Plan::select('id', 'name_plan', 'cover_plan', 'max_user', 'date_start', 'created_at')->orderBy('created_at', 'desc')->get()->toArray();
-        // $hotplan = Plan::with('follows')->get()->sortByDesc(function($hotplan) 
-        // {
-        // return $hotplan->follows->count();
-        // })->take(10);
+        $hotplan = Plan::with('follows')->with('joins')->get()->sortByDesc(function($hotplan) 
+        {
+        $a=$hotplan->follows->count();
+        $b=$hotplan->joins->count();
+        return $a+$b;
+        })->take(10);
 
-    	// return view('home')->with('newplan', $newplan)->with('hotplan', $hotplan);
-        return view('home')->with('newplan', $newplan);
+    	return view('home')->with('newplan', $newplan)->with('hotplan', $hotplan);
+        // return view('home')->with('newplan', $newplan);
 
     }
 
@@ -60,7 +62,7 @@ class PlanController extends Controller
         if($request->hasFile('coverphoto')) {
             $coverphoto = $request->file('coverphoto');
             $fileplan = time() . '.' . $coverphoto->getClientOriginalExtension();
-            Image::make($coverphoto)->resize(1600, 1200)->save(public_path('/uploads/plans/' . $fileplan));
+            Image::make($coverphoto)->save(public_path('/uploads/plans/' . $fileplan));
             $plan->cover_plan = $fileplan;
         }
         $plan->status = 0;
@@ -112,7 +114,7 @@ class PlanController extends Controller
         $comment = Comment::select('comments.id','user_id','plan_id','content','cm_image','comments.created_at','parent_id','name','avatar')->join('users', 'comments.user_id','=', 'users.id')->where('plan_id', '=', $id)->orderBy('comments.id', 'asc')->get()->toArray();
         if(Auth::check()){
             $countjoin = Join::where([['plan_id','=', $id],['user_id','=',Auth::user()->id]])->count();
-            $userjoin = Join::join('users', 'joins.user_id','=', 'users.id')->where([['plan_id','=', $id],['user_id','=',Auth::user()->id]])->get()->toArray();
+            $userjoin = Join::join('users', 'joins.user_id','=', 'users.id')->where([['plan_id','=', $id],['user_id','=',Auth::user()->id]])->first();
             $follow = Follow::where([['plan_id','=', $id],['user_id','=',Auth::user()->id]])->count();
 
             return view('plan.plan', compact('plan', 'users', 'route', 'count', 'join','countjoin','userjoin','follow', 'comment'));
@@ -134,7 +136,7 @@ class PlanController extends Controller
         if($request->hasFile('coverphoto')) {
             $coverphoto = $request->file('coverphoto');
             $fileplan = time() . '.' . $coverphoto->getClientOriginalExtension();
-            Image::make($coverphoto)->resize(1600, 1200)->save(public_path('/uploads/plans/' . $fileplan));
+            Image::make($coverphoto)->save(public_path('/uploads/plans/' . $fileplan));
             $plan->cover_plan = $fileplan;
         }
         $plan->updated_at = new DateTime();

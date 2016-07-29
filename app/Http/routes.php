@@ -55,8 +55,8 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::get('{id}/acceptjoin', ['as' => 'acceptJoin', 'uses' => 'PlanController@acceptJoin']);
 		Route::get('{id}/rejectjoin', ['as' => 'rejectJoin', 'uses' => 'PlanController@rejectJoin']);
 
-		Route::get('{id}/newcomment', ['as' => 'getNewComment', 'uses' => 'CommentController@getNewComment']);
-		Route::get('{id}/replycomment', ['as' => 'getReplyCm', 'uses' => 'CommentController@getReplyCm']);
+		Route::post('{id}/newcomment', ['as' => 'postNewComment', 'uses' => 'CommentController@postNewComment']);
+		Route::post('{id}/replycomment', ['as' => 'postReplyCm', 'uses' => 'CommentController@postReplyCm']);
 
 
 

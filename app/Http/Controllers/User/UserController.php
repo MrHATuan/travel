@@ -23,7 +23,7 @@ class UserController extends Controller
         if($request->hasFile('cover')) {
             $cover = $request->file('cover');
             $filecover = time() . '.' . $cover->getClientOriginalExtension();
-            Image::make($cover)->resize(1600, 1200)->save(public_path('/uploads/covers/' . $filecover));
+            Image::make($cover)->save(public_path('/uploads/covers/' . $filecover));
             $user->cover = $filecover;
         }
 

@@ -10,11 +10,11 @@ class Comment extends Model
     protected $guarded = [];
 
 
-    public function commentuser() {
+    public function user() {
     	return $this->belongsTo('App\Models\User');
     }
 
-    public function commentplan() {
+    public function plan() {
     	return $this->belongsTo('App\Models\Plan');
     }
 

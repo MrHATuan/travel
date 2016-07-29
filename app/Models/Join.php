@@ -10,11 +10,11 @@ class Join extends Model
     protected $guarded = [];
 
 
-    public function joinuser() {
+    public function user() {
     	return $this->belongsTo('App\Models\User');
     }
 
-    public function joinplan() {
+    public function plan() {
     	return $this->belongsTo('App\Models\Plan');
     }
 

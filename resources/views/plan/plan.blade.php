@@ -114,10 +114,10 @@
                                     @if($countjoin == 0 )
                                         <button id="join" class="btn btn-raised btn-block  btn-primary unjoin">Tham gia</button>
                                     @elseif($countjoin == 1)
-                                        @if($userjoin[0]["join"] == 0)
-                                            <button id="join" class="btn btn-raised btn-block  btn-primary" data-id="{{ $userjoin[0]["join"] }}">Đang yêu cầu</button>
-                                        @elseif($userjoin[0]["join"] == 1)
-                                            <button id="join" class="btn btn-raised btn-block  btn-primary" data-id="{{ $userjoin[0]["join"] }}">Đã tham gia</button>
+                                        @if($userjoin["join"] == 0)
+                                            <button id="join" class="btn btn-raised btn-block  btn-primary" data-id="{{ $userjoin["join"] }}">Đang yêu cầu</button>
+                                        @elseif($userjoin["join"] == 1)
+                                            <button id="join" class="btn btn-raised btn-block  btn-primary" data-id="{{ $userjoin["join"] }}">Đã tham gia</button>
                                         @endif
                                     @endif
                                 @endif

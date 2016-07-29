@@ -9,23 +9,23 @@ class Plan extends Model
     protected $table = 'plans';
     protected $guarded = [];
 
-     public function planuser() {
+     public function user() {
     	return $this->belongsTo('App\Models\User');
     }
 
-    public function planroute() {
+    public function routes() {
     	return $this->hasMany('App\Models\Route');
     }
 
-    public function planjoin() {
+    public function joins() {
     	return $this->hasMany('App\Models\Join');
     }
 
-    public function planfollow() {
+    public function follows() {
     	return $this->hasMany('App\Models\Follow');
     }
 
-    public function plancomment() {
+    public function comments() {
     	return $this->hasMany('App\Models\Comment');
     }
 
