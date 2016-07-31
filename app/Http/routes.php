@@ -17,7 +17,7 @@ Route::get('ggmap', function() {
 	return view('ggmaps');
 });
 
-
+Route::get('{id}/demo', 'User\PlanController@ggmap');
 
 Route::get('/{id}/plan', ['as' => 'getPlan', 'uses' => 'User\PlanController@getPlan']);
 

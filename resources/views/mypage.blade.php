@@ -80,6 +80,7 @@ $name= Auth::user()->name;
 
 
                     @foreach($join as $join_data)
+                    @if($join_data->plan["user_id"] != Auth::id())
                         <div class="card-box col-md-4 col-sm-6">
                             <div class="card">                            
                                 <div class="header">
@@ -93,6 +94,7 @@ $name= Auth::user()->name;
                                 </div>                                           
                             </div>
                         </div>
+                    @endif
                     @endforeach
 
                     

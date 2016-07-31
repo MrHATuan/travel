@@ -20,6 +20,15 @@ use DateTime;
 
 class PlanController extends Controller
 {
+
+
+    public function ggmap($id) {
+        $point = Route::select('come_place')->where('plan_id', '=', $id)->get()->toArray();
+        for($i=1; $i < (count($point)-1); $i++) {
+            $a[$i] = $point[$i];
+        }
+        return view('demo', compact('point', 'a'));
+    }
 // START //
 
 
@@ -30,17 +39,14 @@ class PlanController extends Controller
         $a=$hotplan->follows->count();
         $b=$hotplan->joins->count();
         return $a+$b;
-        })->take(10);
+        })->take(9);
 
     	return view('home')->with('newplan', $newplan)->with('hotplan', $hotplan);
-        // return view('home')->with('newplan', $newplan);
-
     }
 
 
     public function getProfile($name) {
         $plan = Plan::where('user_id', Auth::id())->get();
-
         $follow = Follow::where('user_id', Auth::id())->get();
         $join = Join::where([
                 ['user_id', Auth::id()],
@@ -73,7 +79,7 @@ class PlanController extends Controller
         $getid = Plan::select('id')->where('created_at','=', $plan->created_at)->first()->toArray();
         $total = count($request->toArray());
         $n = ($total-6)/7;
-        
+        if($n>0) {
             for ($j=0; $j<$n; $j++){
                 $i=$j+1;
                 $comeplace = "comeplace".$i;
@@ -88,7 +94,8 @@ class PlanController extends Controller
                 $array = array('plan_id'=>$getid["id"], 'come_place'=>$request->$comeplace, 'come_date'=>$request->$comedate, 'stay_time'=>$request->$staytime, 'stay_place'=>$request->$stayplace, 'activity'=>$request->$activity, 'vehicle'=>$request->$vehicles, 'travel_time'=>$request->$traveltime, 'created_at'=>$date);
                 $route[$j] = $array;
             }
-        Route::insert($route);
+            Route::insert($route);
+        }
 
     // Mặc định người tạo join vào plan
         $join = new Join;
@@ -112,16 +119,23 @@ class PlanController extends Controller
         $count = Join::where([['plan_id','=', $id],['join','=',1],])->count();
         $route = Route::where('plan_id', '=', $id)->orderBy('id', 'asc')->get()->toArray();
         $comment = Comment::select('comments.id','user_id','plan_id','content','cm_image','comments.created_at','parent_id','name','avatar')->join('users', 'comments.user_id','=', 'users.id')->where('plan_id', '=', $id)->orderBy('comments.id', 'asc')->get()->toArray();
+        $point = Route::select('come_place')->where('plan_id', '=', $id)->get()->toArray();
+        for($i=1; $i < (count($point)-1); $i++) {
+            $a[$i] = $point[$i];
+        }
         if(Auth::check()){
             $countjoin = Join::where([['plan_id','=', $id],['user_id','=',Auth::user()->id]])->count();
             $userjoin = Join::join('users', 'joins.user_id','=', 'users.id')->where([['plan_id','=', $id],['user_id','=',Auth::user()->id]])->first();
             $follow = Follow::where([['plan_id','=', $id],['user_id','=',Auth::user()->id]])->count();
 
-            return view('plan.plan', compact('plan', 'users', 'route', 'count', 'join','countjoin','userjoin','follow', 'comment'));
+            return view('plan.plan', compact('plan', 'users', 'route', 'count', 'join','countjoin','userjoin','follow', 'comment', 'point', 'a'));
         } else {
-    	   return view('plan.plan', compact('plan', 'users', 'route', 'count', 'join', 'comment'));
+    	   return view('plan.plan', compact('plan', 'users', 'route', 'count', 'join', 'comment','point', 'a'));
         }
-        // print_r($users);
+
+        // $b=$a->toArray();
+
+        // print_r($a);
     }
 
 

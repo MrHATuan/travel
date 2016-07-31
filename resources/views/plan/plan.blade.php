@@ -89,11 +89,15 @@
         			</fieldset>
         		</div>
         		
-        		<div class="col-md-8 col-md-offset-2">
-        			<br><br>
-   					Bản đồ cho  vào đây
-    				<br><br>
-        		</div>
+                <div class="row">
+            		<div class="col-md-10 col-md-offset-1">
+            			<br>
+                        {{-- <div style="width:650; height:400;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m8!1m3!1d59603.065665999915!2d105.86961163513186!3d20.984955255741905!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m0!4m3!3m2!1d21.0022044!2d105.839936!5e0!3m2!1sen!2sus!4v1469884396911" width="640" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+        				<br><br>
+                        </div> --}}
+            		</div>
+                </div>
         		<div class="row">
         			<div class="col-md-6 col-md-offset-6">
         				@if(Auth::check() && $plan["user_id"] != Auth::user()->id)

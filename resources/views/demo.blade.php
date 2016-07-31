@@ -52,51 +52,53 @@
   <body>
     <div id="map"></div>
     <div id="right-panel">
-    <div>
-    <b>Start:</b>
-    <select id="start">
-      <option value="Halifax, NS">Halifax, NS</option>
-      <option value="Boston, MA">Boston, MA</option>
-      <option value="New York, NY">New York, NY</option>
-      <option value="Miami, FL">Miami, FL</option>
-    </select>
-    <br>
-    <b>Waypoints:</b> <br>
-    <i>(Ctrl+Click or Cmd+Click for multiple selection)</i> <br>
-    <select multiple id="waypoints1">
-      <option value="montreal, quebec">Montreal, QBC</option>
-      <option value="toronto, ont">Toronto, ONT</option>
-      <option value="chicago, il">Chicago</option>
-      <option value="winnipeg, mb">Winnipeg</option>
-      <option value="fargo, nd">Fargo</option>
-      <option value="calgary, ab">Calgary</option>
-      <option value="spokane, wa">Spokane</option>
-    </select>
-    <br>
-    <select multiple id="waypoints2">
-      <option value="montreal, quebec">Montreal, QBC</option>
-      <option value="toronto, ont">Toronto, ONT</option>
-      <option value="chicago, il">Chicago</option>
-      <option value="winnipeg, mb">Winnipeg</option>
-      <option value="fargo, nd">Fargo</option>
-      <option value="calgary, ab">Calgary</option>
-      <option value="spokane, wa">Spokane</option>
-    </select>
-    <br>
-    <b>End:</b>
-    <select id="end">
-      <option value="Vancouver, BC">Vancouver, BC</option>
-      <option value="Seattle, WA">Seattle, WA</option>
-      <option value="San Francisco, CA">San Francisco, CA</option>
-      <option value="Los Angeles, CA">Los Angeles, CA</option>
-    </select>
-    <br>
-      <input type="submit" id="submit">
-    </div>
-    <div id="directions-panel"></div>
+        <div>
+
+          <p>{{ count($point) }}</p>
+           <!--  <b>Start:</b>
+            <select id="start">
+              <option value="Halifax, NS">Halifax, NS</option>
+              <option value="Boston, MA">Boston, MA</option>
+              <option value="New York, NY">New York, NY</option>
+              <option value="Miami, FL">Miami, FL</option>
+            </select>
+            <br>
+            <b>Waypoints:</b> <br>
+            <i>(Ctrl+Click or Cmd+Click for multiple selection)</i> <br>
+            <select multiple id="waypoints1">
+              <option value="montreal, quebec">Montreal, QBC</option>
+              <option value="toronto, ont">Toronto, ONT</option>
+              <option value="chicago, il">Chicago</option>
+              <option value="winnipeg, mb">Winnipeg</option>
+              <option value="fargo, nd">Fargo</option>
+              <option value="calgary, ab">Calgary</option>
+              <option value="spokane, wa">Spokane</option>
+            </select>
+            <br>
+            <select multiple id="waypoints2">
+              <option value="montreal, quebec">Montreal, QBC</option>
+              <option value="toronto, ont">Toronto, ONT</option>
+              <option value="chicago, il">Chicago</option>
+              <option value="winnipeg, mb">Winnipeg</option>
+              <option value="fargo, nd">Fargo</option>
+              <option value="calgary, ab">Calgary</option>
+              <option value="spokane, wa">Spokane</option>
+            </select>
+            <br>
+            <b>End:</b>
+            <select id="end">
+              <option value="Vancouver, BC">Vancouver, BC</option>
+              <option value="Seattle, WA">Seattle, WA</option>
+              <option value="San Francisco, CA">San Francisco, CA</option>
+              <option value="Los Angeles, CA">Los Angeles, CA</option>
+            </select> -->
+            <br>
+              <input type="submit" id="submit">
+        </div>
+        <div id="directions-panel"></div>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
     <script>
 
     // $('#submit').click(function(e) {
@@ -122,7 +124,10 @@
       function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         // waypoint là 1 array //
         var waypts = [];
-        var checkboxArray = [document.getElementById('waypoints1').value, document.getElementById('waypoints2').value]
+        var checkboxArray = [];
+        for(var i = 1; i < $point.length; i++){
+          checkboxArray[i] = $point[i]["come_place"];
+        }
         for (var i = 0; i < checkboxArray.length; i++) {
           // if (checkboxArray.options[i].selected) {
             waypts.push({
@@ -133,8 +138,10 @@
         }
           // get route 
         directionsService.route({
-          origin: document.getElementById('start').value,
-          destination: document.getElementById('end').value,
+          // origin: document.getElementById('start').value,
+          // destination: document.getElementById('end').value,
+          origin: $point[0]["come_place"],
+          destination: $point[0]["come_place"],
           waypoints: waypts,
           optimizeWaypoints: true,
           travelMode: 'DRIVING'

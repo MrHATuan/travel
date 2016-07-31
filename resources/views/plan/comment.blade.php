@@ -151,7 +151,8 @@
         </div>
     </div>
 @endif
-            
+    
+@if(Auth::check())        
 <script type="text/javascript">
 
 $('#btnComment').click(function(e) {
@@ -211,10 +212,11 @@ function addComment(vitri,idcm) {
     cm += '<form id="reCM'+idcm.id+'"  method="post" enctype="multipart/form-data">';
     cm += '<input type="hidden" name="_token" value="{{ csrf_token() }}">';
     cm += '<input type="hidden" name="parent" value="'+idcm.id+'">';
-    cm += '<div class="input-group"><input type="text" name="replyText" id="replyText" class="form-control" placeholder="Bình luận..."><span class="input-group-btn">';
-    cm += '<button class="btn" id="btnReCmImg"><i class="fa fa-camera fa-lg"></i><input type="file" value="" name="btnReImg" id="'+idcm.id+'" onchange="readURL4(this);"></button>';
-    cm += '<button class="btn btn-raised btn-default" id="'+idcm.id+'" onclick="reComnment(this)"><i class="fa fa-paper-plane-o fa-lg"></i></button>';
+    cm += '<div class="input-group"><input type="text" name="replyText" id="replyText'+idcm.id+'" class="form-control" placeholder="Bình luận..."><span class="input-group-btn">';
+    cm += '<button class="btn" id="btnReCmImg"><i class="fa fa-camera fa-lg"></i><input type="file" value="" class="re'+idcm.id+'" name="btnReImg" id="'+idcm.id+'" onchange="readURL4(this);"></button>';
+    cm += '<button class="btn btn-raised btn-default" id="'+idcm.id+'" onclick="reComnment(event,this);"><i class="fa fa-paper-plane-o fa-lg"></i></button>';
     cm += '</span></div><div class="ReImage" id="ReImage'+idcm.id+'" style="display: none;">';
+    cm += '<button type="button" class="close" id="'+idcm.id+'" aria-hidden="true" onclick="closeIMG(event,this)">&times;</button>';
     cm += '<img src="" id="ReImg'+idcm.id+'" style="width: 100px; height: auto; margin-left: 20px;">';
     cm += '</div></form</div></div></div></div></div></div></div></div>';
 
@@ -251,11 +253,11 @@ function reComnment(e,input) {
     var x = input.id;
     var vitri = $('div#'+x);
     var text = $('#replyText'+x).val();
-    var img = $('.re'+x).val();
+    var img = $('.re'+x)[0].files[0];
     var data = document.querySelector('#reCM'+x);
     var formdata = new FormData(data);
 
-    if ((text.length > 0) || (img.length > 0)) {
+    if ((text.length > 0) || (img != null)) {
         $.ajax({
             type: 'POST',
             url: '{{ route('postReplyCm', $plan["id"]) }}',
@@ -295,5 +297,5 @@ function addReCm(vitri, recm) {
     $(vitri).append(re);
 };
 
-
 </script>
+@endif
