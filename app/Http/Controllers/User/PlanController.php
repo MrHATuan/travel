@@ -20,17 +20,7 @@ use DateTime;
 
 class PlanController extends Controller
 {
-
-
-    public function ggmap($id) {
-        $point = Route::select('come_place')->where('plan_id', '=', $id)->get()->toArray();
-        for($i=1; $i < (count($point)-1); $i++) {
-            $a[$i] = $point[$i];
-        }
-        return view('demo', compact('point', 'a'));
-    }
 // START //
-
 
     public function getHome() {
         $newplan = Plan::select('id', 'name_plan', 'cover_plan', 'max_user', 'date_start', 'created_at')->orderBy('created_at', 'desc')->get()->toArray();
@@ -120,17 +110,14 @@ class PlanController extends Controller
         $route = Route::where('plan_id', '=', $id)->orderBy('id', 'asc')->get()->toArray();
         $comment = Comment::select('comments.id','user_id','plan_id','content','cm_image','comments.created_at','parent_id','name','avatar')->join('users', 'comments.user_id','=', 'users.id')->where('plan_id', '=', $id)->orderBy('comments.id', 'asc')->get()->toArray();
         $point = Route::select('come_place')->where('plan_id', '=', $id)->get()->toArray();
-        for($i=1; $i < (count($point)-1); $i++) {
-            $a[$i] = $point[$i];
-        }
         if(Auth::check()){
             $countjoin = Join::where([['plan_id','=', $id],['user_id','=',Auth::user()->id]])->count();
             $userjoin = Join::join('users', 'joins.user_id','=', 'users.id')->where([['plan_id','=', $id],['user_id','=',Auth::user()->id]])->first();
             $follow = Follow::where([['plan_id','=', $id],['user_id','=',Auth::user()->id]])->count();
 
-            return view('plan.plan', compact('plan', 'users', 'route', 'count', 'join','countjoin','userjoin','follow', 'comment', 'point', 'a'));
+            return view('plan.plan', compact('plan', 'users', 'route', 'count', 'join','countjoin','userjoin','follow', 'comment', 'point'));
         } else {
-    	   return view('plan.plan', compact('plan', 'users', 'route', 'count', 'join', 'comment','point', 'a'));
+    	   return view('plan.plan', compact('plan', 'users', 'route', 'count', 'join', 'comment','point'));
         }
 
         // $b=$a->toArray();

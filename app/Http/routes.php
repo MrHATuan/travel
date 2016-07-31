@@ -13,12 +13,6 @@
 
 Route::get('/',['as' => 'getHome', 'uses' => 'User\PlanController@getHome']);
 
-Route::get('ggmap', function() {
-	return view('ggmaps');
-});
-
-Route::get('{id}/demo', 'User\PlanController@ggmap');
-
 Route::get('/{id}/plan', ['as' => 'getPlan', 'uses' => 'User\PlanController@getPlan']);
 
 Route::post('login', ['as' => 'postLogin', 'uses' => 'LoginController@postLogin']);
